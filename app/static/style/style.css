@@ -4,7 +4,172 @@
     box-sizing: border-box;
 }
 
-#h{
-    color: brown;
-    font-size: 100px;
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header{
+    width: 100%;
+    height: 100vh;
+    background-color: #0557AD;
+    background-image: linear-gradient(to right bottom,#0557AD 30%,#08E6FF 100%);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+
+nav{
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background: transparent;
+}
+
+
+nav .logo{
+    width: 25%;
+    line-height: 80px;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 1.5rem;
+    letter-spacing: 3px;
+    transition-property: all;
+    transition-duration: 2s;
+    transition-timing-function: linear;
+}
+
+
+nav .logo:hover{
+    transform: rotate(360deg);
+    color: #020887;
+}
+
+
+nav .logo a{
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+nav .logo a:hover{
+    color: #9bc634;
+}
+
+nav .navbar{
+    width: 75%;
+    line-height: 80px;
+}
+
+
+nav .navbar ul{
+    float: right;
+}
+
+nav .navbar ul li{
+    display: inline-block;
+    list-style-type: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-right: 3rem;
+}
+
+nav .navbar ul li a{
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+nav .navbar ul li a:hover{
+    color: #9bc634;
+}
+
+nav .checkBtn{
+    font-size: 30px;
+    color: white;
+    float: right;
+    margin-right: 30px;
+    display: none;
+}
+
+nav #check{
+    display: none;
+}
+
+
+
+
+
+@media (max-width: 1100px) {
+    nav .logo{
+        margin-left: 20px;
+        font-size: 1rem;
+    }
+
+    nav .navbar ul li{
+        margin-right: 1.2rem;
+        font-size: 1rem;
+    }
+}
+
+
+
+@media (max-width: 992px) {
+    nav .logo{
+        margin-left: 10px;
+        font-size: 0.8rem;
+    }
+
+    nav .navbar ul li{
+        margin-right: 1.5rem;
+        font-size: 0.8rem;
+    }
+}
+
+
+
+@media (max-width: 768px) {
+    nav .logo{
+        margin-left: 10px;
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+    }
+
+    nav .navbar ul li{
+        margin-right: 1rem;
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+    }
+}
+
+
+
+@media (max-width: 600px) {
+    nav .logo{
+        margin-left: 30px;
+        font-size: 1rem;
+    }
+
+    nav .checkBtn{
+        display: block;
+    }
+
+    nav .navbar ul{
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        top: 80px;
+        left: -100%;
+        text-align: center;
+        transition: all .5s;
+        background-image: linear-gradient(to right bottom,#0557AD 30%,#08E6FF 100%);
+    }
+
+    nav .navbar ul li{
+        display: block;
+    }
+
+    #check:checked ~ ul{
+        left: 0;
+    }
 }
