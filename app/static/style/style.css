@@ -33,6 +33,7 @@ nav .logo{
     line-height: 80px;
     color: #FFFFFF;
     text-align: center;
+    text-shadow: 4px 2px 4px #020887;
     font-size: 1.5rem;
     letter-spacing: 3px;
     transition-property: all;
@@ -84,6 +85,12 @@ nav .navbar ul li a:hover{
     color: #9bc634;
 }
 
+
+nav .navbar ul li a.active{
+    color: #9bc634;
+}
+
+
 nav .checkBtn{
     font-size: 30px;
     color: white;
@@ -95,6 +102,76 @@ nav .checkBtn{
 nav #check{
     display: none;
 }
+
+
+.main_content{
+    width: 100%;
+    height: 87vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
+.main_content .content{
+    width: 40%;
+    color: #FFFFFF;
+    padding: 25px;
+}
+
+
+.content h1{
+    font-size: 2.4rem;
+    margin-bottom: 30px;
+}
+
+
+.content p{
+    text-align: justify;
+    font-size: 1.2rem;
+    line-height: 26px;
+    margin-bottom: 20px;
+}
+
+
+.content button{
+    width: 170px;
+    height: 45px;
+    color: #FFFFFF;
+    border: none;
+    font-family: inherit;
+    font-weight: bold;
+    letter-spacing: 2px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 2px #0557AD;
+    text-transform: uppercase;
+    background-color: #9bc634;
+}
+
+
+.content button a{
+    color: #FFFFFF;
+    text-decoration: none;
+    text-shadow: 2px 2px 2px gray;
+}
+
+
+.main_content .content_img{
+    width: 40%;
+    height: 87vh;
+}
+
+.content_img img{
+    width: 100%;
+    height: 87vh;
+    margin-top: 1px;
+}
+
+
+
+
+
+
 
 
 
@@ -144,7 +221,12 @@ nav #check{
 
 
 
-@media (max-width: 600px) {
+@media screen and (max-width: 600px) {
+
+    nav{
+        background-color: black;
+    }
+
     nav .logo{
         margin-left: 30px;
         font-size: 1rem;

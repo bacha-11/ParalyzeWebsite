@@ -1,7 +1,7 @@
 <nav>
 
     <div class="logo">
-        <h1><a href="#">Websitelogo</a></h1>
+        <h1><a href="{{ url_for('index') }}">Websitelogo</a></h1>
     </div>
 
     <div class="navbar">
@@ -10,12 +10,12 @@
         <label for="check" class="checkBtn"><i class="fas fa-bars"></i></label>
 
         <ul>
-            <li><a href="#"> Home </a></li>
-            <li><a href="#"> Blog </a></li>
-            <li><a href="#"> News </a></li>
-            <li><a href="#"> Shop </a></li>
-            <li><a href="#"> Contact </a></li>
-            <li><a href="#"> About </a></li>
+            <li><a href="{{ url_for('index') }}" id="a" class="addActive"> Home </a></li>
+            <li><a href="{{ url_for('blog') }}" class="addActive"> Blog </a></li>
+            <li><a href="#" class="addActive"> News </a></li>
+            <li><a href="#" class="addActive"> Shop </a></li>
+            <li><a href="#" class="addActive"> Contact </a></li>
+            <li><a href="#" class="addActive"> About </a></li>
         </ul>
     </div>
 
