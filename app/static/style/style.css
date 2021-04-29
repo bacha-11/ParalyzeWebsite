@@ -217,6 +217,31 @@ nav #check{
         font-size: 0.8rem;
         letter-spacing: 1px;
     }
+
+
+    .main_content .content{
+        width: 100%; 
+        text-align: center;
+    }
+
+
+    .content h1{
+        font-size: 3rem;
+        margin-bottom: 30px;
+    }
+    
+    
+    .content p{
+        text-align: center;
+        font-size: 1.3rem;
+        line-height: 27px;
+        margin-bottom: 30px;
+    }
+
+    
+    .main_content .content_img{
+        display: none;
+    }
 }
 
 
@@ -253,5 +278,34 @@ nav #check{
 
     #check:checked ~ ul{
         left: 0;
+    }
+
+
+    .main_content .content{
+        width: 100%; 
+        text-align: center;
+    }
+
+
+    .content h1{
+        font-size: 2.7rem;
+        margin-bottom: 30px;
+    }
+    
+    
+    .content p{
+        text-align: center;
+        font-size: 1.3rem;
+        line-height: 27px;
+        margin-bottom: 30px;
+    }
+
+    
+    .main_content .content_img{
+        display: none;
+    }
+
+    .content_img img{
+        display: none;
     }
 }
