@@ -10,11 +10,17 @@ for(let i=0; i<addActive.length; i++ ) {
 }
 
 
-// Change navbar logo
-// let checkBtn = document.querySelector('.checkBtn');
+// Change navbar icon
+let checkBtn = document.querySelector('.checkBtn');
 
-// function changeLoge(){
-//     checkBtn.innerHTML = '<i class="fas fa-remove"></i>'
-// }
+function changeLoge(){
+    if (checkBtn.innerHTML == '<i class="fas fa-bars"></i>'){
+        checkBtn.innerHTML = '<i class="far fa-window-close"></i>'
+    }
+    else{
+        checkBtn.innerHTML = '<i class="fas fa-bars"></i>'
+    }
+    
+}
 
-// checkBtn.addEventListener('click', changeLoge)
+checkBtn.addEventListener('click', changeLoge)

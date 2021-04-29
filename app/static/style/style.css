@@ -78,7 +78,7 @@ nav .navbar ul li{
 
 nav .navbar ul li a{
     text-decoration: none;
-    color: #FFFFFF;
+    color: #ecf0f1;
 }
 
 nav .navbar ul li a:hover{
@@ -93,7 +93,7 @@ nav .navbar ul li a.active{
 
 nav .checkBtn{
     font-size: 30px;
-    color: white;
+    color: #ecf0f1;
     float: right;
     margin-right: 30px;
     display: none;
@@ -115,7 +115,7 @@ nav #check{
 
 .main_content .content{
     width: 40%;
-    color: #FFFFFF;
+    color: #ecf0f1;
     padding: 25px;
 }
 
@@ -233,7 +233,7 @@ nav #check{
     
     .content p{
         text-align: center;
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         line-height: 27px;
         margin-bottom: 30px;
     }
@@ -295,7 +295,7 @@ nav #check{
     
     .content p{
         text-align: center;
-        font-size: 1.3rem;
+        font-size: 1.1rem;
         line-height: 27px;
         margin-bottom: 30px;
     }
