@@ -321,6 +321,103 @@ nav #check{
 }
 
 
+footer{
+    width: 100%;
+    height: 70vh;
+    color: #ecf0f1;
+    background-color: #34495e;
+}
+
+
+.upperFooter{
+    width: 100%;
+    height: 55vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
+.upperFooter h3{
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    
+}
+
+
+.upperFooter .aboutTheShop{
+    width: 30%;
+}
+
+
+.aboutTheShop p{
+    text-align: justify;
+    color: #95a5a6;
+    line-height: 25px;
+}
+
+
+.categories ul li{
+    list-style: none;
+    padding-bottom: 10px;
+}
+
+
+.categories li a{
+    text-decoration: none;
+    color: #95a5a6;
+}
+
+
+.categories li a:hover{
+    color: #ecf0f1;
+}
+
+
+.getInTouch ul li{
+    list-style: none;
+    padding-bottom: 20px;
+    color: #95a5a6;
+}
+
+.getInTouch li i{
+    margin-right: 5px;
+}
+
+
+.lowerFooter{
+    width: 100%;
+    height: 14vh;
+    color: #95a5a6;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
+.lowerFooter h1{
+    letter-spacing: 3px;
+}
+
+
+.lowerFooter h1 a{
+    text-decoration: none;
+    color: #ecf0f1;
+}
+
+
+.socialMedia i{
+    color: #ecf0f1;
+    font-size: 2.5rem;
+    padding-left: 4px;
+    transition: color .5s;
+}
+
+.socialMedia i:hover{
+    color: #95a5a6;
+}
+
+
 
 
 
@@ -385,6 +482,43 @@ nav #check{
     .cardsContainer .card{
         width: 100%;
     }
+
+    footer{
+        height: 100vh;
+    }
+
+
+    .upperFooter{
+        flex-direction: column;
+        height: 85vh;
+    }
+
+
+    .upperFooter h3{
+        text-align: center;
+    }
+
+
+    .upperFooter .aboutTheShop{
+        width: 100%;
+    }
+
+    .aboutTheShop p{
+        text-align: center;
+    }
+
+
+    .categories ul li{
+        text-align: center;
+    }
+
+
+    .getInTouch ul li{
+        text-align: center;
+    }
+
+
+    
 
 }
 
@@ -469,6 +603,16 @@ nav #check{
 
 
 
+    .lowerFooter h1{
+        display: none;
+    }
+
+
+    .socialMedia i{
+        font-size: 2rem;
+    }
+
+
     
 }
 
@@ -477,7 +621,7 @@ nav #check{
 @media screen and (max-width: 600px) {
 
     nav{
-        background-color: black;
+        background-color: #34495e;
     }
 
     nav .logo{
