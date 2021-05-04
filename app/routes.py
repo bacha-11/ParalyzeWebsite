@@ -10,4 +10,9 @@ def index():
 
 @app.route('/blog')
 def blog():
-    return render_template('blog.html', title='Home Page')
+    return render_template('blog.html', title='Blog')
+
+
+@app.route('/shop')
+def shop():
+    return render_template('shop.html', title='Shop')

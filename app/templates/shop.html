@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<header>
+    {% include '_nav.html' %}
+    
+
+    <div class="shop_content">
+        <h1>READY TO ESCAPE THE RAT RACE?</h1>
+        <p>
+            Accelerate your transformation into the entrepreneur you're destined to become 
+            with the world's best training courses.
+        </p>
+    </div>
+</header>
+
+<div class="subscribeBar">
+    <div class="subscribeContent">
+        <i class="fas fa-envelope"></i>
+        <h2>Get Battel-Tested Tips</h2>
+        <p>See how new products can work for you</p>
+    </div>
+
+    <div class="subscribeForm">
+        <form action="">
+            <input type="email" name="email" placeholder="Enter your email" required> 
+            <button type="submit">Subscribe Me</button>
+        </form>
+    </div>
+</div>
+
+
+<div class="shoping_card_content">
+    
+    <div class="shoping_card">
+        <img src=" {{ url_for('static', filename='images/bottle.png')}} " alt="">
+        <h2>best shoes product ever</h2>
+        <span>$ 200</span>
+        <a href="#"><button> BUY </button></a>
+    </div>
+
+    <div class="shoping_card">
+        <img src=" {{ url_for('static', filename='images/camera.jpeg')}} " alt="">
+        <h2>best shoes product ever</h2>
+        <span>$ 200</span>
+        <a href="#"><button> BUY </button></a>
+    </div>
+
+    <div class="shoping_card">
+        <img src=" {{ url_for('static', filename='images/shoes.jpg')}} " alt="">
+        <h2>best shoes product ever</h2>
+        <span>$ 200</span>
+        <a href="#"><button> BUY </button></a>
+    </div>
+
+    <div class="shoping_card">
+        <img src=" {{ url_for('static', filename='images/shoes.jpg')}} " alt="">
+        <h2>best shoes product ever</h2>
+        <span>$ 200</span>
+        <a href="#"><button> BUY </button></a>
+    </div>
+
+    <div class="shoping_card">
+        <img src=" {{ url_for('static', filename='images/shoes.jpg')}} " alt="">
+        <h2>best shoes product ever</h2>
+        <span>$ 200</span>
+        <a href="#"><button> BUY </button></a>
+    </div>
+
+    <div class="shoping_card">
+        <img src=" {{ url_for('static', filename='images/shoes.jpg')}} " alt="">
+        <h2>best shoes product ever</h2>
+        <span>$ 200</span>
+        <a href="#"><button> BUY </button></a>
+    </div>
+
+</div>
+
+{% include '_footer.html' %}
+
+{% endblock %}
