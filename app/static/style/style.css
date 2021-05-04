@@ -475,6 +475,36 @@ footer{
 }
 
 
+.next_previous{
+    width: 90%;
+    height: 40px;
+    margin: 0px auto;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.next_previous a{
+    color: #FFFFFF;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-weight: bold;
+    font-family: inherit;
+    border-radius: 20px;
+    text-decoration: none;
+    text-shadow: 2px 2px 2px gray;
+    background-color: #9bc634;
+}
+
+
+.next_previous a:hover{
+    color: #9bc634;
+}
+
+
 
 
 

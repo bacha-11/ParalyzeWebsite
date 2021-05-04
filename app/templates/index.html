@@ -91,55 +91,7 @@
 </div>
 
 
-
-
-<footer>
-    <div class="upperFooter">
-        <div class="aboutTheShop">
-            <h3>About the Shop</h3>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Suscipit laborum consequuntur velit esse, beatae tempora quia! Assumenda 
-                inventore expedita illum et asperiores, blanditiis ex iste magni explicabo nisi, sit hic.
-            </p>
-        </div>
-
-        <div class="categories">
-            <h3>Categories</h3>
-            <ul>
-                <li><a href="{{ url_for('index') }}" id="a" class="addActive"> Home </a></li>
-                <li><a href="#" class="addActive"> Shop </a></li>
-                <li><a href="{{ url_for('blog') }}" class="addActive"> Blog </a></li>
-                <li><a href="#" class="addActive"> Privacy Policy </a></li>
-            </ul>
-        </div>
-
-        <div class="getInTouch">
-            <h3>Get In Touch</h3>
-          <ul>
-              <li><i class="fas fa-envelope"></i> Example@gmail.com</li>
-              <li><i class="fas fa-phone"></i> +123 456789</li>
-              <li><i class="fas fa-map-marker-alt"></i> ABC XYZ ABC</li>
-          </ul>  
-        </div>
-    </div>
-
-    <hr>
-
-    <div class="lowerFooter">
-        <h1><a href="{{ url_for('index') }}">Websitelogo</a></h1>
-        <p> &copy; 2021 All Rights Reserved.</p>
-
-        <div class="socialMedia">
-            <a href="#" target="_blank"><i class="fab fa-facebook-square"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-instagram-square"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-twitter-square"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
-        </div>
-    </div>
-</footer>
-
-
+{% include '_footer.html' %}
 
 
 {% endblock %}
