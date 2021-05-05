@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<header>
+
+    {% include '_nav.html' %}
+
+    <div class="about_page">
+        <div class="about_content">
+            <h1>Who We Are</h1>
+            <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis 
+                saepe ducimus deserunt molestias voluptatum cumque minima harum quaerat facilis, 
+                porro nostrum at nemo praesentium beatae maiores, tempore odio distinctio nulla?
+                saepe ducimus deserunt molestias voluptatum cumque minima harum quaerat facilis, 
+                porro nostrum at nemo praesentium beatae maiores, tempore odio distinctio nulla?
+            </p>
+        </div>
+            <img src=" {{ url_for('static', filename='images/about.png')}} " alt="about pic">
+    </div>
+</header>
+
+
+{% endblock %}
