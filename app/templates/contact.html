@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+<header>
+    {% include '_nav.html' %}
+
+    <div class="contact_page">
+        <div class="contact_form">
+            <h1>Contact Form</h1>
+            <form action="">
+                <input type="text" placeholder="Enter Your Name" required>
+                <input type="email" placeholder="Enter Your Email" required>
+                <textarea>Enter Your Query</textarea>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        <img src=" {{ url_for('static', filename='images/contact.png')}} " alt="contact pic">
+    </div>
+</header>
+
+{% endblock %}

@@ -16,3 +16,8 @@ def blog():
 @app.route('/shop')
 def shop():
     return render_template('shop.html', title='Shop')
+
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html', title='Contact')
