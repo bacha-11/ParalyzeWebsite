@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+<div class="post_nav_color">
+    {% include '_nav.html' %}
+</div>
+
+<div class="post_view_page">
+    <div class="post_view_content">
+        <h1>7 Steps To Overcome Your FEAR Of CONFLICT & Get COMFY W/ CONFRONTATION</h1>
+        <img src=" {{ url_for('static', filename='images/boxing3.jpg')}} " alt="product pic">
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, 
+            itaque ipsum eveniet minima est commodi sed quam, accusantium 
+            ex mollitia nostrum aspernatur. Odio soluta tempora eius saepe, nostrum atque quidem.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, 
+            itaque ipsum eveniet minima est commodi sed quam, accusantium 
+            ex mollitia nostrum aspernatur. Odio soluta tempora eius saepe, nostrum atque quidem.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, 
+            itaque ipsum eveniet minima est commodi sed quam, accusantium 
+            ex mollitia nostrum aspernatur. Odio soluta tempora eius saepe, nostrum atque quidem.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, 
+            itaque ipsum eveniet minima est commodi sed quam, accusantium 
+            ex mollitia nostrum aspernatur. Odio soluta tempora eius saepe, nostrum atque quidem.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, 
+            itaque ipsum eveniet minima est commodi sed quam, accusantium 
+            ex mollitia nostrum aspernatur. Odio soluta tempora eius saepe, nostrum atque quidem.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, 
+            itaque ipsum eveniet minima est commodi sed quam, accusantium 
+            ex mollitia nostrum aspernatur. Odio soluta tempora eius saepe, nostrum atque quidem.
+        </p>
+
+    </div>
+
+    <div class="post_rightside_content">
+
+        <div class="post_subscribe_form">
+            <h2>Get In Touch</h2>
+            <form action="">
+                <input type="email" placeholder="Enter Email Address" required>
+                <button type="submit"> Subscribe Me </button>
+            </form>
+        </div>
+
+        <div class="latest_post">
+            <h4>Latest Updates</h4>
+            <p><a href="#"> 7 Steps To Overcome Your FEAR </a></p>
+            <p><a href="#"> 7 Steps To Overcome Your FEAR Of CONFLICT & Get COMFY W/ CONFRONTATION </a></p>
+            <p><a href="#"> This is Post 3 </a></p>
+            <p><a href="#"> This is Post 4 </a></p>
+            <p><a href="#"> This is Post 1 </a></p>
+            <p><a href="#"> This is Post 2 </a></p>
+            <p><a href="#"> This is Post 3 </a></p>
+            <p><a href="#"> This is Post 4 </a></p>
+            <p><a href="#"> This is Post 9 </a></p>
+        </div>
+    </div>
+</div>
+
+{% include '_footer.html' %}
+
+{% endblock %}
