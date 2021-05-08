@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap');
+
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Source Sans Pro', sans-serif;
+    box-sizing: border-box;
+    list-style-type: none;
+    text-decoration: none;
+}
+
+
+.dashboard{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+
+
+.dashboard .sidebar{
+    width: 25%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-image: linear-gradient(to right bottom,#0557AD 30%,#08E6FF 100%);
+}
+
+
+.sidebar .dashbord_logo{
+    width: 100%;
+    height: 15vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 10px;
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+.dashbord_logo h1{
+    color: #fff;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+
+.dashbord_logo h1 span{
+    color: #9bc634;
+}
+
+
+.sidebar .dashbord_navbar{
+    width: 100%;
+    height: 85vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+
+.dashbord_navbar li{
+    padding-bottom: 2rem;
+}
+
+
+.dashbord_navbar li span{
+    color: #9bc634;
+    font-size: 2rem;
+}
+
+
+.dashbord_navbar li a{
+    color: #fff;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    padding-left: 1rem;
+    text-transform: uppercase;
+}
+
+
+.dashbord_navbar li a:hover{
+    color: #9bc634;
+}
+
+
+.dashbord_navbar li a.active{
+    color: #9bc634;
+}

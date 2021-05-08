@@ -31,3 +31,13 @@ def contact():
 @app.route('/about')
 def about():
     return render_template('about.html', title='About')
+
+
+# Dashboard code start from here
+
+@app.route('/dashboard')
+def dashboard():
+    return render_template('owner/owner_index.html', title='Admin Dashboard')
+
+
+# End Dashboard
