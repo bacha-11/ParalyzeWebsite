@@ -17,6 +17,9 @@
 }
 
 
+/* start of sidebar container */
+
+
 .dashboard .sidebar{
     width: 25%;
     height: 100vh;
@@ -90,6 +93,12 @@
 }
 
 
+/* end of sidebar container */
+
+
+/* start of right side container */
+
+
 .home_right_container{
     width: 75%;
     height: 100vh;
@@ -103,7 +112,6 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    border: 1px solid black;
 }
 
 
@@ -119,13 +127,14 @@
 
 
 .card .card_content h1{
+    color: #95a5a6;
     font-size: 3rem;
-    font-weight: bolder;
 }
 
 
 .card .card_content p{
     padding-left: 4px;
+    color: #95a5a6;
 }
 
 
@@ -135,8 +144,113 @@
 }
 
 
+.post_and_subscribe_container{
+    width: 100%;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
 
 
+.post_and_subscribe_container .post{
+    width: 60%;
+    height: 60vh;
+    border-radius: 4px;
+    padding: 10px;
+    background-color: #fff;
+}
+
+
+.post h2{
+    color: #34495e;
+    text-align: center;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+
+.post_content{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+    border-bottom: 1px solid #95a5a6;
+}
+
+
+.post_content label{
+    width: 85%;
+    margin-bottom: 4px;
+}
+
+
+.post_content label a{
+    color: #95a5a6;
+}
+
+
+.post_content label a:hover{
+    color: #3498db;
+}
+
+
+.post_content .fa-trash{
+    color: #c0392b;
+    margin-bottom: 4px;
+}
+
+
+.post_content .fa-trash:hover{
+    color: #e74c3c;
+}
+
+
+.post_content .fa-edit{
+    color: #27ae60;
+    margin-bottom: 4px;
+}
+
+
+.post_content .fa-edit:hover{
+    color: #2ecc71;
+}
+
+
+.post_and_subscribe_container .subscribe{
+    width: 30%;
+    height: 60vh;
+    border-radius: 4px;
+    padding: 10px;
+    background-color: #fff;
+}
+
+
+.subscribe h2{
+    color: #34495e;
+    text-align: center;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+
+
+.subscribe_content{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+
+.subscribe_content label{
+    color: #95a5a6;
+    font-size: 1.2rem;
+    padding-bottom: 20px;
+}
+
+
+/* end of right side container */
 
 
 
