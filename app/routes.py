@@ -40,4 +40,10 @@ def dashboard():
     return render_template('owner/owner_index.html', title='Admin Dashboard')
 
 
+
+@app.route('/post')
+def post():
+    return render_template('owner/owner_post.html', title='Post')
+
+
 # End Dashboard

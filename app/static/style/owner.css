@@ -37,7 +37,7 @@
     justify-content: flex-start;
     align-items: center;
     padding-left: 10px;
-    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.2); */
 }
 
 
@@ -99,10 +99,87 @@
 /* start of right side container */
 
 
-.home_right_container{
+.right_container{
     width: 75%;
     height: 100vh;
     background-color: #bdc3c7;
+}
+
+
+.search_and_logout{
+    width: 100%;
+    height: 12vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #fff;
+    background-image: linear-gradient(to left bottom,#0557AD 70%,#08E6FF 100%);
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+.search_and_logout .search{
+    width: 50%;
+    height: 5vh;
+    border-radius: 20px;
+    background-color: #fff;
+}
+
+
+.search input{
+    width: 90%;
+    height: 5vh;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    padding-left: 13px;
+    padding-bottom: 3px;
+    border-radius: 20px;
+    background: none;
+}
+
+
+.search button{
+    width: 9%;
+    height: 5vh;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: none;
+}
+
+
+.search button span{
+    color: #34495e;
+    font-size: 1rem;
+}
+
+
+.search_and_logout .logout{
+    width: 13%;
+    height: 6vh;
+}
+
+
+.logout button{
+    width: 100%;
+    height: 6vh;
+    color: #fff;
+    border: none;
+    outline: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 20px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    background-color: #9bc634;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 2px gray;
+}
+
+
+.logout button:hover{
+    color: #9bc634;
 }
 
 
@@ -139,14 +216,14 @@
 
 
 .card span{
-    color: #9bc634;
-    font-size: 2rem;
+    color: #27ae60;
+    font-size: 3rem;
 }
 
 
 .post_and_subscribe_container{
     width: 100%;
-    height: 70vh;
+    height: 55vh;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -155,7 +232,7 @@
 
 .post_and_subscribe_container .post{
     width: 60%;
-    height: 60vh;
+    height: 50vh;
     border-radius: 4px;
     padding: 10px;
     background-color: #fff;
@@ -219,7 +296,7 @@
 
 .post_and_subscribe_container .subscribe{
     width: 30%;
-    height: 60vh;
+    height: 50vh;
     border-radius: 4px;
     padding: 10px;
     background-color: #fff;
@@ -246,7 +323,7 @@
 .subscribe_content label{
     color: #95a5a6;
     font-size: 1.2rem;
-    padding-bottom: 20px;
+    padding-bottom: 15px;
 }
 
 

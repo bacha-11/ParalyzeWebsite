@@ -4,26 +4,11 @@
 {% block content %}
 
 <div class="dashboard">
-    <div class="sidebar">
-        <div class="dashbord_logo">
-            <h1> <span class="fas fa-globe"></span> Dashboard</h1>
-        </div>
+    {% include 'owner/_sidebar.html' %}
 
-        <div class="dashbord_navbar">
-            <ul>
-                <li><span class="fas fa-home"></span> <a href=" {{ url_for('dashboard')}} " class="addActive">Home</a></li>
-                <li><span class="fas fa-store-alt"></span> <a href="#" class="addActive">Post</a></li>
-                <li><span class="fas fa-store-alt"></span> <a href="#" class="addActive">Product</a></li>
-                <li><span class="fas fa-users"></span> <a href="#" class="addActive">Subscribe</a></li>
-                <li><span class="fas fa-plus-circle"></span> <a href="#" class="addActive">Add Post</a></li>
-                <li><span class="fas fa-plus-circle"></span> <a href="#" class="addActive">Add Product</a></li>
-            </ul>
-        </div>
-    </div>
+    <div class="right_container">
 
-
-
-    <div class="home_right_container">
+        {% include 'owner/_searchbar.html' %}
 
         <!-- starting of card -->
 
@@ -41,7 +26,7 @@
                     <h1>120</h1>
                     <p>Products</p>
                 </div>
-                <span class="fas fa-store-alt"></span>
+                <span class="fas fa-cart-arrow-down"></span>
             </div>
 
             <div class="card">
@@ -101,7 +86,6 @@
                     <label>Example@gmail.com</label>
                     <label>Example11@gmail.com</label>
                     <label>Example22@gmail.com</label>
-                    <label>Example@gmail.com</label>
                 </div>
             </div>
 
