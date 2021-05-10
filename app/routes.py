@@ -65,4 +65,10 @@ def addpost():
 
 
 
+@app.route('/addproduct')
+def addproduct():
+    return render_template('owner/owner_addproduct.html', title='Add Product')
+
+
+
 # End Dashboard
