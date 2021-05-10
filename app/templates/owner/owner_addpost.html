@@ -1,0 +1,27 @@
+{% extends 'owner/owner_base.html' %}
+
+
+{% block content %}
+
+<div class="dashboard">
+    {% include 'owner/_sidebar.html' %}
+
+    <div class="right_container">
+        {% include 'owner/_searchbar.html' %}
+
+        <div class="addpost_page">
+            <div class="addpost_form">
+                <form action="">
+                    <input type="text" placeholder="Enter Your Title" required>
+                    <input type="file" required>
+                    <textarea name="" required>Enter Your Article</textarea>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

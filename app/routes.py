@@ -59,5 +59,10 @@ def subscriber():
 
 
 
+@app.route('/addpost')
+def addpost():
+    return render_template('owner/owner_addpost.html', title='Add Post')
+
+
 
 # End Dashboard

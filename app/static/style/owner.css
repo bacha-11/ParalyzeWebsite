@@ -482,6 +482,76 @@
 }
 
 
+.addpost_page{
+    width: 95%;
+    height: 80vh;
+    margin: 0px auto;
+    margin-top: 1rem;
+    background-color: #fff;
+}
+
+
+.addpost_page form{
+    width: 90%;
+    margin: 0px auto;
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+
+form input[type="text"]{
+    height: 8vh;
+    border: none;
+    outline: none;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #34495e;
+}
+
+
+
+form input[type="file"]{
+    height: 8vh;
+    border: none;
+    outline: none;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+
+form textarea{
+    height: 35vh;
+    border: none;
+    outline: none;
+    resize: vertical;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #34495e;
+}
+
+
+form button{
+    color: #fff;
+    height: 8vh;
+    border: none;
+    outline: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: inherit;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 2px gray;
+    background-color: #9bc634;
+}
+
+
+form button:hover{
+    color: #9bc634;
+}
+
+
 
 
 
