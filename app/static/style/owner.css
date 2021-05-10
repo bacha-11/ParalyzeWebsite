@@ -429,8 +429,57 @@
 }
 
 
+.subscriber_page{
+    width: 60%;
+    height: 82vh;
+    margin: 0px auto;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+}
 
 
+.subscriber_page h2{
+    color: #34495e;
+    padding: 1rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+
+
+.subscriber_page .subscriber_content{
+    padding: 1rem;
+    display: flex;
+    font-size: 1.2rem;
+    justify-content: space-around;
+}
+
+
+.subscriber_content label{
+    color: #34495e;
+}
+
+
+.subscriber_content .fa-trash{
+    color: #c0392b;
+}
+
+
+.subscriber_content .fa-trash:hover{
+    color: #e74c3c;
+}
+
+
+.subscriber_page .next_pre_btn{
+    width: 95%;
+    height: 8vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0px auto;
+}
 
 
 

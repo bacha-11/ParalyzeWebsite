@@ -51,4 +51,13 @@ def post():
 def product():
     return render_template('owner/owner_product.html', title='Product')
 
+
+
+@app.route('/subscriber')
+def subscriber():
+    return render_template('owner/owner_subscriber.html', title='Subscriber')
+
+
+
+
 # End Dashboard
