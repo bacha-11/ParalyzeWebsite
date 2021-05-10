@@ -46,4 +46,9 @@ def post():
     return render_template('owner/owner_post.html', title='Post')
 
 
+
+@app.route('/product')
+def product():
+    return render_template('owner/owner_product.html', title='Product')
+
 # End Dashboard
