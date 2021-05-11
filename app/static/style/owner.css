@@ -568,6 +568,39 @@ form button:hover{
 }
 
 
+.post_detial_view{
+    width: 90%;
+    height: auto;
+    margin: 0px auto;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.post_detial_view h1{
+    color: #34495e;
+    padding-bottom: 1rem;
+}
+
+
+
+.post_detial_view img{
+    width: 100%;
+    height: 90vh;
+    padding-bottom: 1rem;
+}
+
+
+.post_detial_view p{
+    color: #34495e;
+    text-align: justify;
+    line-height: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+
 
 
 

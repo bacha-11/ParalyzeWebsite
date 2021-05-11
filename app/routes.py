@@ -71,4 +71,9 @@ def addproduct():
 
 
 
+@app.route('/owner_post_view')
+def owner_post_view():
+    return render_template('owner/owner_post_view.html', title='Add Product')
+
+
 # End Dashboard
