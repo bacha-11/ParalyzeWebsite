@@ -644,8 +644,14 @@ form button:hover{
 
 
 .shoping_card h2{
+    color: #34495e;
     font-size: 15px;
     text-transform: capitalize;
+}
+
+
+.shoping_card span{
+    color: #34495e;
 }
 
 
@@ -666,6 +672,8 @@ form button:hover{
     text-shadow: 2px 2px 2px gray;
     background-color: #9bc634;
 }
+
+
 
 .shoping_card a button:hover{
     color: #9bc634;
