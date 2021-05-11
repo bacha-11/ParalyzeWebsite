@@ -73,7 +73,13 @@ def addproduct():
 
 @app.route('/owner_post_view')
 def owner_post_view():
-    return render_template('owner/owner_post_view.html', title='Add Product')
+    return render_template('owner/owner_post_view.html', title='Post Detial View')
+
+
+
+@app.route('/owner_product_view')
+def owner_product_view():
+    return render_template('owner/owner_product_view.html', title='Product Detial View')
 
 
 # End Dashboard

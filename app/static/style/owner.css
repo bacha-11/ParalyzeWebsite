@@ -602,7 +602,74 @@ form button:hover{
 
 
 
+.shoping_card_content{
+    width: 90%;
+    height: auto;
+    margin: 0px auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
 
+
+.shoping_card_content .shoping_card{
+    width: 20%;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    background-color: #ecf0f1;
+}
+
+
+.shoping_card img{
+    width: 100%;
+    height: 40vh;
+    transition: all .5s;
+}
+
+
+.shoping_card img:hover{
+    transform: scale(1.3,1);
+}
+
+
+.shoping_card h2{
+    font-size: 15px;
+    text-transform: capitalize;
+}
+
+
+.shoping_card a{
+    width: 100%;
+}
+
+
+.shoping_card a button{
+    width: 100%;
+    height: 30px;
+    color: #FFFFFF;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: inherit;
+    text-shadow: 2px 2px 2px gray;
+    background-color: #9bc634;
+}
+
+.shoping_card a button:hover{
+    color: #9bc634;
+}
 
 
 

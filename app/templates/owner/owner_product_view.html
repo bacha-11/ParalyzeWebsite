@@ -1,0 +1,28 @@
+{% extends 'owner/owner_base.html' %}
+
+
+{% block content %}
+
+<div class="dashboard">
+    {% include 'owner/_sidebar.html' %}
+
+    <div class="right_container">
+
+        {% include 'owner/_searchbar.html' %}
+
+
+        <div class="shoping_card_content">
+    
+            <div class="shoping_card">
+                <img src=" {{ url_for('static', filename='images/bottle.png')}} " alt="">
+                <h2>best shoes product ever</h2>
+                <span>$ 200</span>
+                <a href="#"><button> BUY </button></a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}
