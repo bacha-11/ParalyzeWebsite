@@ -13,12 +13,12 @@ def blog():
     return render_template('client/blog.html', title='Blog')
 
 
-@app.route('/post_view')
+@app.route('/post-detial-view')
 def post_view():
     return render_template('client/post_view.html', title='Blog Post')
 
 
-@app.route('/shop')
+@app.route('/shop-products')
 def shop():
     return render_template('client/shop.html', title='Shop')
 
