@@ -4,33 +4,35 @@ from flask import redirect, render_template, url_for
 
 @app.route('/')
 def index():
-    return render_template('index.html', title='Home Page')
+    return render_template('client/index.html', title='Home Page')
 
 
 
 @app.route('/blog')
 def blog():
-    return render_template('blog.html', title='Blog')
+    return render_template('client/blog.html', title='Blog')
 
 
 @app.route('/post_view')
 def post_view():
-    return render_template('post_view.html', title='Blog Post')
+    return render_template('client/post_view.html', title='Blog Post')
 
 
 @app.route('/shop')
 def shop():
-    return render_template('shop.html', title='Shop')
+    return render_template('client/shop.html', title='Shop')
 
 
 @app.route('/contact')
 def contact():
-    return render_template('contact.html', title='Contact')
+    return render_template('client/contact.html', title='Contact')
 
 
 @app.route('/about')
 def about():
-    return render_template('about.html', title='About')
+    return render_template('client/about.html', title='About')
+
+
 
 
 # Dashboard code start from here
