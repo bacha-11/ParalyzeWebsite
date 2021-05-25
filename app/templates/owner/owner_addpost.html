@@ -11,10 +11,16 @@
 
         <div class="addpost_page">
             <div class="addpost_form">
-                <form action="">
-                    <input type="text" placeholder="Enter Your Title" required>
-                    <input type="file" required>
-                    <textarea name="" required>Enter Your Article</textarea>
+                <form action="" method="POST" enctype="multipart/form-data">
+                    {% if post %}
+                    <input type="text" name="title" value="{{post.title}}" required>
+                    <input type="file" name="image" value="{{post.image}}" required>
+                    <textarea name="article" required>{{post.article}}</textarea>
+                    {% else %}
+                    <input type="text" name="title" placeholder="Type Your Title" required>
+                    <input type="file" name="image" value="{{post.image}}" required>
+                    <textarea name="article" required>Type Your Article</textarea>
+                    {% endif %}
                     <button type="submit">Submit</button>
                 </form>
             </div>

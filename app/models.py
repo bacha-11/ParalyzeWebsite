@@ -9,6 +9,7 @@ class Post(db.Model):
     image = db.Column(db.LargeBinary)
     image_name = db.Column(db.String(64))
     article = db.Column(db.Text, nullable=False)
+    article_views = db.Column(db.Integer, default=0)
     timestamp = db.Column(db.DateTime, default=datetime.utcnow)
 
 
