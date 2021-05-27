@@ -3,7 +3,10 @@
 
 {% block content %}
 
+
+
 <div class="dashboard">
+
     {% include 'owner/_sidebar.html' %}
 
     <div class="right_container">
@@ -15,7 +18,7 @@
         <div class="home_card">
             <div class="card">
                 <div class="card_content">
-                    <h1>{{posts|length}}</h1>
+                    <h1>{{post_count|length}}</h1>
                     <p>Posts</p>
                 </div>
                 <span class="fas fa-store-alt"></span>
@@ -44,6 +47,7 @@
         <!-- stating of post and subscribe container -->
 
         <div class="post_and_subscribe_container">
+            
             <div class="post">
                 <h2>Latest Post</h2>
 
@@ -51,33 +55,27 @@
                 <div class="post_content">
                     <label><a href=" {{ url_for('owner_post_view', id=post.id) }} "> {{ post.title }} </a></label>
                     <a href=" {{ url_for('edit_post', id=post.id) }} "><span class="fas fa-edit"></span></a>
-                    <a href=" {{ url_for('delete_post', id=post.id) }} "><span class="fas fa-trash"></span></a>
+                     <span onclick="add_CssClass()"  class="fas fa-trash"></span> 
                 </div>
+
+
+                <div class="pop ">
+                    <div class="pop_box ">
+                        <i class="fas fa-exclamation"></i>
+                        <h1>Your Post will be deleted Permanently!</h1>
+                        <label>Are you sure to proceed?</label>
+                    
+                        <div class="btns">
+                            <a href="" class="btn1" onclick="remove_cssClass()">Cancel Process</a>
+                            <a href=" {{ url_for('delete_post', id=post.id) }} " class="btn2">Delete Post</a>
+                        </div>
+                    
+                    </div>
+                    </div>
+
 
                 {% endfor %}
-                <!-- <div class="post_content">
-                    <label><a href="#">Lorem ipsum dolor sit am</a></label>
-                    <a href="#"><span class="fas fa-edit"></span></a>
-                    <a href="#"><span class="fas fa-trash"></span></a>
-                </div>
-
-                <div class="post_content">
-                    <label><a href="#">Lorem ipsum dolor sit am</a></label>
-                    <a href="#"><span class="fas fa-edit"></span></a>
-                    <a href="#"><span class="fas fa-trash"></span></a>
-                </div>
-
-                <div class="post_content">
-                    <label><a href="#">Lorem ipsum dolor sit am</a></label>
-                    <a href="#"><span class="fas fa-edit"></span></a>
-                    <a href="#"><span class="fas fa-trash"></span></a>
-                </div>
-
-                <div class="post_content">
-                    <label><a href="#">Lorem ipsum dolor sit am</a></label>
-                    <a href="#"><span class="fas fa-edit"></span></a>
-                    <a href="#"><span class="fas fa-trash"></span></a>
-                </div> -->
+                
             </div>
 
             <div class="subscribe">
@@ -101,5 +99,7 @@
 
 
 </div>
+
+
 
 {% endblock %}

@@ -275,6 +275,7 @@
 .post_content .fa-trash{
     color: #c0392b;
     margin-bottom: 4px;
+    cursor: pointer;
 }
 
 
@@ -330,7 +331,7 @@
 /* end of home right side container */
 
 
-/* end of post right side container */
+
 
 
 .post_in_postpage{
@@ -681,9 +682,103 @@ form button:hover{
 
 
 
+.pop{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    background: rgba(0, 0, 0, 0.2);
+}
 
 
+.pop.active{
+    display: block;
+}
 
 
+.pop_box{
+    width: 400px;
+    margin: 0px auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px;
+    text-align: center;
+    user-select: none;
+    padding: 40px;
+    border: 1px solid #b3b3b3;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    background-color: #f2f2f2;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: none;
+    transform: translate(-50%, -50%);
+    transition: all .3s ease-in-out;
+}
+
+
+.pop_box.popactive{
+    display: block;
+}
+
+
+.pop_box i{
+    font-size: 60px;
+    color: #eb9447;
+    border: 5px solid #eb9447;
+    padding: 20px 40px;
+    border-radius: 50%;
+    margin: -10px 0 20px 0;
+}
+
+
+.pop_box h1{
+    font-size: 30px;
+    color: #1b2631;
+    margin-bottom: 5px;
+}
+
+
+.pop_box label{
+    font-size: 23px;
+    color: #404040;
+}
+
+.pop_box .btns{
+    margin: 40px 0 0 0;
+}
+
+
+.btns .btn1, .btns .btn2{
+    background: #999999;
+    color: white;
+    font-size: 18px;
+    padding: 10px 13px;
+    border: 1px solid #808080;
+    border-radius: 5px;
+}
+
+
+.btns .btn2{
+    background-color: #ff3333;
+    margin-left: 20px;
+    border: 1px solid #cc0000;
+}
+
+
+.btn1:hover{
+    transition: .5s;
+    background: #8c8c8c;
+}
+
+
+.btn2:hover{
+    transition: .5s;
+    background: #e60000;
+}
 
 

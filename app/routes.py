@@ -1,7 +1,10 @@
 from app import app, db
 from base64 import b64encode
 from app.models import Post
-from flask import redirect, request, render_template, url_for
+from flask import redirect, request, render_template, url_for, flash
+from werkzeug.utils import secure_filename
+
+app.config["ALLOWED_IMAGE_EXTENSIONS"] = ["JPEG", "JPG", "PNG", "GIF"]
 
 
 @app.route('/')
@@ -41,8 +44,9 @@ def about():
 
 @app.route('/dashboard')
 def dashboard():
+    post_count = Post.query.all()
     posts = Post.query.order_by(Post.timestamp.desc()).all()[0:5]
-    return render_template('owner/owner_index.html', title='Admin Dashboard', posts=posts)
+    return render_template('owner/owner_index.html', title='Admin Dashboard', posts=posts, post_count=post_count)
 
 
 @app.route('/delete_post/<id>')
@@ -86,17 +90,50 @@ def subscriber():
 
 
 
+
+def allowed_image(filename):
+
+    if not '.' in filename:
+        flash("File must have '.' !")
+        return redirect(url_for('addpost'))
+
+    ext = filename.rsplit('.',1)[1]
+    if ext.upper() in app.config['ALLOWED_IMAGE_EXTENSIONS']:
+        return True
+    else:
+        flash('File must be PNG, JPG, JPEG, GIF !')
+        return False
+
+
+
 @app.route('/addpost', methods=['GET', 'POST'])
 def addpost():
+    posts = Post.query.all()
     if request.method == 'POST':
         title = request.form['title']
-        image = request.files['image']
-        image_name = image.filename
         article = request.form['article']
-        new_post = Post(title=title, image=image.read(), image_name=image_name, article=article)
-        db.session.add(new_post)
-        db.session.commit()
-        return redirect(url_for('addpost'))
+
+
+        for check_title in posts:
+            if title == check_title.title:
+                flash('Title already present chose a different title!')
+                return redirect(url_for('addpost'))
+
+
+        image = request.files['image']
+
+        if image.filename == '':
+            flash('File must have name!')
+            return redirect(url_for('addpost'))
+
+        if allowed_image(image.filename):
+            image_name = secure_filename(image.filename)
+
+            new_post = Post(title=title, image=image.read(), image_name=image_name, article=article)
+            db.session.add(new_post)
+            db.session.commit()
+            flash('Post successfully added!')
+            return redirect(url_for('addpost'))
     return render_template('owner/owner_addpost.html', title='Add Post', post=None)
 
 
