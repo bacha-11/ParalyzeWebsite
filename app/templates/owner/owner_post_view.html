@@ -7,7 +7,7 @@
     <h1> {{ post.title }} </h1>
         <img src=" data:;base64,{{ image }} " alt="product pic">
         <p>
-            {{ post.article }}
+            {{ post.article|safe }}
         </p>
 </div>
 

@@ -15,11 +15,12 @@
                     {% if post %}
                     <input type="text" name="title" value="{{post.title}}" required>
                     <input type="file" name="image" value="{{post.image}}" required>
-                    <textarea name="article" required>{{post.article}}</textarea>
+                    <textarea name="article" id="article" required>{{post.article}}</textarea>
                     {% else %}
                     <input type="text" name="title" placeholder="Type Your Title" required>
                     <input type="file" name="image" value="{{post.image}}" required>
-                    <textarea name="article" required>Type Your Article</textarea>
+                    <textarea name="article" id="article" required>Type Your Article</textarea>
+                    <!-- {{ ckeditor.create() }} -->
                     {% endif %}
                     <button type="submit">Submit</button>
                 </form>
@@ -29,5 +30,9 @@
 </div>
 
 
+{{ ckeditor.load() }}
+{{ ckeditor.config(name='article') }}
+
+    
 
 {% endblock %}

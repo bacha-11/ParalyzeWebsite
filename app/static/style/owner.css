@@ -123,6 +123,7 @@
     height: 5vh;
     border-radius: 20px;
     background-color: #fff;
+    
 }
 
 
@@ -507,7 +508,7 @@
 }
 
 
-form input[type="text"]{
+.addpost_page form input[type="text"]{
     height: 8vh;
     border: none;
     outline: none;
@@ -517,7 +518,7 @@ form input[type="text"]{
 }
 
 
-form input[type="number"]{
+.addpost_page form input[type="number"]{
     height: 8vh;
     border: none;
     outline: none;
@@ -528,7 +529,7 @@ form input[type="number"]{
 
 
 
-form input[type="file"]{
+.addpost_page form input[type="file"]{
     height: 8vh;
     border: none;
     outline: none;
@@ -537,7 +538,7 @@ form input[type="file"]{
 }
 
 
-form textarea{
+.addpost_page form textarea{
     height: 35vh;
     border: none;
     outline: none;
@@ -548,7 +549,7 @@ form textarea{
 }
 
 
-form button{
+.addpost_page form button{
     color: #fff;
     height: 8vh;
     border: none;
@@ -559,6 +560,7 @@ form button{
     font-family: inherit;
     border-radius: 10px;
     margin-bottom: 1rem;
+    margin-top: 1rem;
     text-shadow: 2px 2px 2px gray;
     background-color: #9bc634;
 }
@@ -582,6 +584,7 @@ form button:hover{
 .post_detial_view h1{
     color: #34495e;
     padding-bottom: 1rem;
+    text-transform: capitalize;
 }
 
 
