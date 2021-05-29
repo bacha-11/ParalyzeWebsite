@@ -46,6 +46,12 @@ def about():
 def dashboard():
     post_count = Post.query.all()
     posts = Post.query.order_by(Post.timestamp.desc()).all()[0:5]
+
+    query = request.args.get('query')
+    if query:
+        search_post = Post.query.filter(Post.title.contains(query)).all()
+        return render_template('owner/owner_search_post.html', title='Search Result', search_post=search_post, query=query)
+
     return render_template('owner/owner_index.html', title='Admin Dashboard', posts=posts, post_count=post_count)
 
 
