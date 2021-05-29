@@ -14,3 +14,5 @@ class Config(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     CKEDITOR_PKG_TYPE = 'basic'
+
+    POSTS_PER_PAGE = 7
