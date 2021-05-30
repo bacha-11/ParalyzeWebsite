@@ -55,64 +55,6 @@ def dashboard():
     return render_template('owner/owner_index.html', title='Admin Dashboard', posts=posts, post_count=post_count)
 
 
-@app.route('/delete_post/<id>')
-def delete_post(id):
-    post = Post.query.filter_by(id=id).first()
-    db.session.delete(post)
-    db.session.commit()
-    return redirect(url_for('post'))
-
-
-@app.route('/edit_post/<id>', methods=['GET', 'POST'])
-def edit_post(id):
-    post = Post.query.filter_by(id=id).first()
-    if request.method == 'POST':
-        post.title = request.form['title']
-        img = request.files['image']
-        post.image = img.read()
-        post.image_name = img.filename
-        post.article = request.form['article']
-        db.session.commit()
-        return redirect(url_for('post'))
-    return render_template('owner/owner_addpost.html', title='Edit Post', post=post)
-
-
-
-@app.route('/post')
-def post():
-    page = request.args.get('page', 1, type=int)
-    posts = Post.query.order_by(Post.timestamp.desc()).paginate(
-        page, app.config['POSTS_PER_PAGE'], False
-    ) 
-    next_url = url_for('post', page=posts.next_num) \
-        if posts.has_next else None
-    prev_url = url_for('post', page=posts.prev_num) \
-        if posts.has_prev else None
-    return render_template('owner/owner_post.html', title='Post', posts=posts.items, next_url=next_url, prev_url=prev_url)
-
-
-
-@app.route('/product')
-def product():
-    page = request.args.get('page', type=int)
-    products = Product.query.order_by(Product.timestamp.desc()).paginate(
-        page, app.config['POSTS_PER_PAGE'], False
-    )
-    next_url = url_for('product', page=products.next_num) \
-        if products.has_next else None
-    prev_url = url_for('product', page=products.prev_num) \
-        if products.has_prev else None
-
-    return render_template('owner/owner_product.html', title='Product', products=products.items, next_url=next_url, prev_url=prev_url)
-
-
-
-@app.route('/subscriber')
-def subscriber():
-    return render_template('owner/owner_subscriber.html', title='Subscriber')
-
-
-
 
 def allowed_image(filename):
 
@@ -126,7 +68,6 @@ def allowed_image(filename):
     else:
         flash('File must be PNG, JPG, JPEG, GIF !')
         return False
-
 
 
 @app.route('/addpost', methods=['GET', 'POST'])
@@ -171,11 +112,56 @@ def owner_post_view(id):
 
 
 
+@app.route('/post')
+def post():
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.order_by(Post.timestamp.desc()).paginate(
+        page, app.config['POSTS_PER_PAGE'], False
+    ) 
+    next_url = url_for('post', page=posts.next_num) \
+        if posts.has_next else None
+    prev_url = url_for('post', page=posts.prev_num) \
+        if posts.has_prev else None
+    return render_template('owner/owner_post.html', title='Post', posts=posts.items, next_url=next_url, prev_url=prev_url)
+
+
+
+@app.route('/delete_post/<id>')
+def delete_post(id):
+    post = Post.query.filter_by(id=id).first()
+    db.session.delete(post)
+    db.session.commit()
+    flash('Post successfully deleted!')
+    return redirect(url_for('post'))
+
+
+
+@app.route('/edit_post/<id>', methods=['GET', 'POST'])
+def edit_post(id):
+    post = Post.query.filter_by(id=id).first()
+    if request.method == 'POST':
+        post.title = request.form['title']
+        post.article = request.form['article']
+        img = request.files['image']
+
+        if img.filename == '':
+            flash('File must have name!')
+            return redirect(url_for('edit_post'))
+
+        if allowed_image(img.filename):
+            post.image_name = img.filename
+            post.image = img.read()
+            db.session.commit()
+            return redirect(url_for('post'))
+    return render_template('owner/owner_addpost.html', title='Edit Post', post=post)
+
+
+
 @app.route('/addproduct', methods=['GET', 'POST'])
 def addproduct():
     if request.method == 'POST':
         title = request.form['title']
-        description = request.form['description']
+        price = request.form['price']
         product_url = request.form['product_url']
         product_image = request.files['product_image']
         
@@ -187,7 +173,7 @@ def addproduct():
             product_image_name = secure_filename(product_image.filename)
 
             new_product = Product(title=title, 
-                                 description=description, 
+                                 price=price, 
                                  product_url=product_url, 
                                  product_image=product_image.read(), 
                                  product_image_name=product_image_name)
@@ -196,7 +182,57 @@ def addproduct():
             flash('Product successfully added!')
             return redirect(url_for('addproduct'))
 
-    return render_template('owner/owner_addproduct.html', title='Add Product')
+    return render_template('owner/owner_addproduct.html', title='Add Product', product=None)
+
+
+
+@app.route('/edit_product/<id>', methods=["GET", "POST"])
+def edit_product(id):
+    product = Product.query.filter_by(id=id).first()
+    
+    if request.method == "POST":
+        product.title = request.form["title"]
+        product.price = request.form['price']
+        product.product_url = request.form['product_url']
+        product_image = request.files['product_image']
+
+        if product_image.filename == '':
+            flash('File must have name')
+            return redirect(url_for('edit_image'))
+
+        if allowed_image(product_image.filename):
+            product.product_image_name = secure_filename(product_image.filename)
+            product.product_image = product_image.read()
+            db.session.commit()
+            flash('Product successfully updated!')
+            return redirect(url_for('product'))
+
+    return render_template('owner/owner_addproduct.html', title='Edit Product', product=product)
+
+
+
+@app.route('/delete_product/<id>')
+def delete_product(id):
+    product = Product.query.filter_by(id=id).first()
+    db.session.delete(product)
+    db.session.commit()
+    flash('Product successfully deleted!')
+    return redirect(url_for('product'))
+
+
+
+@app.route('/product')
+def product():
+    page = request.args.get('page', type=int)
+    products = Product.query.order_by(Product.timestamp.desc()).paginate(
+        page, app.config['POSTS_PER_PAGE'], False
+    )
+    next_url = url_for('product', page=products.next_num) \
+        if products.has_next else None
+    prev_url = url_for('product', page=products.prev_num) \
+        if products.has_prev else None
+
+    return render_template('owner/owner_product.html', title='Product', products=products.items, next_url=next_url, prev_url=prev_url)
 
 
 
@@ -207,4 +243,8 @@ def owner_product_view(id):
     return render_template('owner/owner_product_view.html', title='Product Detial View', product=product, image=image)
 
 
+
+@app.route('/subscriber')
+def subscriber():
+    return render_template('owner/owner_subscriber.html', title='Subscriber')
 # End Dashboard

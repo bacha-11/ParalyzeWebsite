@@ -21,7 +21,7 @@ class Post(db.Model):
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(128), nullable=False)
-    description = db.Column(db.String(264), nullable=False)
+    price = db.Column(db.String(264), nullable=False)
     product_url = db.Column(db.String(500), nullable=False)
     product_image = db.Column(db.LargeBinary)
     product_image_name = db.Column(db.String(64))
