@@ -11,10 +11,11 @@
 
         <div class="addpost_page">
             <div class="addpost_form">
-                <form action="">
-                    <input type="text" placeholder="Enter Product Title" required>
-                    <input type="number" placeholder="Enter Product Price" required>
-                    <input type="file" required>
+                <form action="" method="POST" enctype="multipart/form-data">
+                    <input type="text" name="title" placeholder="Type Product Title" required>
+                    <input type="number" name="description" placeholder="Type Product Price" required>
+                    <input type="url" name="product_url" placeholder="Enter Product Url" required>
+                    <input type="file" name="product_image" required>
                     <button type="submit">Submit</button>
                 </form>
             </div>

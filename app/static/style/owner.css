@@ -508,7 +508,7 @@
 }
 
 
-.addpost_page form input[type="text"]{
+.addpost_page form input[type="text"], form input[type="url"]{
     height: 8vh;
     border: none;
     outline: none;

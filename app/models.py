@@ -15,3 +15,19 @@ class Post(db.Model):
 
     def __repr__(self):
         return 'Post -> {}'.format(self.title)
+
+
+
+class Product(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(128), nullable=False)
+    description = db.Column(db.String(264), nullable=False)
+    product_url = db.Column(db.String(500), nullable=False)
+    product_image = db.Column(db.LargeBinary)
+    product_image_name = db.Column(db.String(64))
+    product_views = db.Column(db.Integer, default=0)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+    
+
+
+

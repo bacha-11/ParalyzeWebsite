@@ -1,6 +1,6 @@
 from app import app, db
 from base64 import b64encode
-from app.models import Post
+from app.models import Post, Product
 from flask import redirect, request, render_template, url_for, flash
 from werkzeug.utils import secure_filename
 
@@ -94,7 +94,16 @@ def post():
 
 @app.route('/product')
 def product():
-    return render_template('owner/owner_product.html', title='Product')
+    page = request.args.get('page', type=int)
+    products = Product.query.order_by(Product.timestamp.desc()).paginate(
+        page, app.config['POSTS_PER_PAGE'], False
+    )
+    next_url = url_for('product', page=products.next_num) \
+        if products.has_next else None
+    prev_url = url_for('product', page=products.prev_num) \
+        if products.has_prev else None
+
+    return render_template('owner/owner_product.html', title='Product', products=products.items, next_url=next_url, prev_url=prev_url)
 
 
 
@@ -109,7 +118,7 @@ def allowed_image(filename):
 
     if not '.' in filename:
         flash("File must have '.' !")
-        return redirect(url_for('addpost'))
+        return False
 
     ext = filename.rsplit('.',1)[1]
     if ext.upper() in app.config['ALLOWED_IMAGE_EXTENSIONS']:
@@ -152,12 +161,6 @@ def addpost():
 
 
 
-@app.route('/addproduct')
-def addproduct():
-    return render_template('owner/owner_addproduct.html', title='Add Product')
-
-
-
 @app.route('/owner_post_view/<id>')
 def owner_post_view(id):
     post = Post.query.filter_by(id=id).first()
@@ -168,9 +171,40 @@ def owner_post_view(id):
 
 
 
-@app.route('/owner_product_view')
-def owner_product_view():
-    return render_template('owner/owner_product_view.html', title='Product Detial View')
+@app.route('/addproduct', methods=['GET', 'POST'])
+def addproduct():
+    if request.method == 'POST':
+        title = request.form['title']
+        description = request.form['description']
+        product_url = request.form['product_url']
+        product_image = request.files['product_image']
+        
+        if product_image.filename == '':
+            flash('File must have name!')
+            return redirect(url_for('addproduct'))
+
+        if allowed_image(product_image.filename):
+            product_image_name = secure_filename(product_image.filename)
+
+            new_product = Product(title=title, 
+                                 description=description, 
+                                 product_url=product_url, 
+                                 product_image=product_image.read(), 
+                                 product_image_name=product_image_name)
+            db.session.add(new_product)
+            db.session.commit()
+            flash('Product successfully added!')
+            return redirect(url_for('addproduct'))
+
+    return render_template('owner/owner_addproduct.html', title='Add Product')
+
+
+
+@app.route('/owner_product_view/<id>')
+def owner_product_view(id):
+    product = Product.query.filter_by(id=id).first()
+    image = b64encode(product.product_image).decode('utf-8')
+    return render_template('owner/owner_product_view.html', title='Product Detial View', product=product, image=image)
 
 
 # End Dashboard

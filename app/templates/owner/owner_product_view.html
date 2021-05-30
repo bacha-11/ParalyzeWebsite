@@ -14,10 +14,10 @@
         <div class="shoping_card_content">
     
             <div class="shoping_card">
-                <img src=" {{ url_for('static', filename='images/bottle.png')}} " alt="">
-                <h2>best shoes product ever</h2>
-                <span>$ 200</span>
-                <a href="#"><button> BUY </button></a>
+                <img src="data:;base64,{{ image }} " alt="">
+                <h2>{{product.title}}</h2>
+                <span>$ {{product.description}}</span>
+                <a href=" {{ product.product_url }} " target="_blank"><button> BUY </button></a>
             </div>
         </div>
 

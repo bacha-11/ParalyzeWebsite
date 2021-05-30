@@ -14,66 +14,25 @@
         <div class="post_in_postpage">
 
             <h2>Latest Product</h2>
+
+            {% for product in products %}
             <div class="postpage_content">
-                <label><a href=" {{ url_for('owner_product_view') }} ">7 Steps To Overcome Your FEAR Of CONFLICT & Get COMFY W/ CONFRONTATION</a></label>
+                <label><a href=" {{ url_for('owner_product_view', id=product.id) }} ">{{product.title}}</a></label>
                 <a href="#"><span class="fas fa-edit"></span></a>
                 <a href="#"><span class="fas fa-trash"></span></a>
-                <a href=" {{ url_for('owner_product_view') }} "><span class="fas fa-arrow-right"></span></a>
+                <a href=" {{ url_for('owner_product_view', id=product.id) }} "><span class="fas fa-arrow-right"></span></a>
             </div>
 
-
-            <div class="postpage_content">
-                <label><a href="#">7 Steps To Overcome Your FEAR Of CONFLICT & Get COMFY W/ CONFRONTATION</a></label>
-                <a href="#"><span class="fas fa-edit"></span></a>
-                <a href="#"><span class="fas fa-trash"></span></a>
-                <a href="#"><span class="fas fa-arrow-right"></span></a>
-            </div>
-
-
-            <div class="postpage_content">
-                <label><a href="#">7 Steps To Overcome Your FEAR Of CONFLICT & Get COMFY W/ CONFRONTATION</a></label>
-                <a href="#"><span class="fas fa-edit"></span></a>
-                <a href="#"><span class="fas fa-trash"></span></a>
-                <a href="#"><span class="fas fa-arrow-right"></span></a>
-            </div>
-
-
-            <div class="postpage_content">
-                <label><a href="#">7 Steps To Overcome Your FEAR Of CONFLICT & Get COMFY W/ CONFRONTATION</a></label>
-                <a href="#"><span class="fas fa-edit"></span></a>
-                <a href="#"><span class="fas fa-trash"></span></a>
-                <a href="#"><span class="fas fa-arrow-right"></span></a>
-            </div>
-
-
-            <div class="postpage_content">
-                <label><a href="#">7 Steps To Overcome Your FEAR Of CONFLICT & Get COMFY W/ CONFRONTATION</a></label>
-                <a href="#"><span class="fas fa-edit"></span></a>
-                <a href="#"><span class="fas fa-trash"></span></a>
-                <a href="#"><span class="fas fa-arrow-right"></span></a>
-            </div>
-
-
-            <div class="postpage_content">
-                <label><a href="#">7 Steps & Get COMFY W/ CONFRONTATION</a></label>
-                <a href="#"><span class="fas fa-edit"></span></a>
-                <a href="#"><span class="fas fa-trash"></span></a>
-                <a href="#"><span class="fas fa-arrow-right"></span></a>
-            </div>
-
-            <div class="postpage_content">
-                <label><a href="#">7 Steps To Overcome Your FEAR Of CONFLICT & Get COMFY W/ CONFRONTATION</a></label>
-                <a href="#"><span class="fas fa-edit"></span></a>
-                <a href="#"><span class="fas fa-trash"></span></a>
-                <a href="#"><span class="fas fa-arrow-right"></span></a>
-            </div>
-
-            
+            {% endfor %}
 
 
             <div class="next_pre_btn">
-                <a href="#">next</a>
-                <a href="#">previous</a>
+                {% if next_url %}
+                <a href=" {{ next_url }} ">next</a>
+                {% endif %}
+                {% if prev_url %}
+                <a href=" {{ prev_url }} ">previous</a>
+                {% endif %}
             </div>
 
         </div>
