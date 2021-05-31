@@ -9,6 +9,7 @@ app.config["ALLOWED_IMAGE_EXTENSIONS"] = ["JPEG", "JPG", "PNG", "GIF"]
 
 @app.route('/')
 def index():
+    
     return render_template('client/index.html', title='Home Page')
 
 
@@ -45,6 +46,7 @@ def about():
 @app.route('/dashboard')
 def dashboard():
     post_count = Post.query.all()
+    product_count = Product.query.all()
     posts = Post.query.order_by(Post.timestamp.desc()).all()[0:5]
 
     query = request.args.get('query')
@@ -52,7 +54,7 @@ def dashboard():
         search_post = Post.query.filter(Post.title.contains(query)).all()
         return render_template('owner/owner_search_post.html', title='Search Result', search_post=search_post, query=query)
 
-    return render_template('owner/owner_index.html', title='Admin Dashboard', posts=posts, post_count=post_count)
+    return render_template('owner/owner_index.html', title='Admin Dashboard', posts=posts, post_count=post_count, product_count=product_count)
 
 
 
@@ -98,6 +100,13 @@ def addpost():
             db.session.commit()
             flash('Post successfully added!')
             return redirect(url_for('addpost'))
+
+    
+    query = request.args.get('query')
+    if query:
+        search_post = Post.query.filter(Post.title.contains(query)).all()
+        return render_template('owner/owner_search_post.html', title='Search Result', search_post=search_post, query=query)
+
     return render_template('owner/owner_addpost.html', title='Add Post', post=None)
 
 
@@ -114,6 +123,11 @@ def owner_post_view(id):
 
 @app.route('/post')
 def post():
+    query = request.args.get('query')
+    if query:
+        search_post = Post.query.filter(Post.title.contains(query)).all()
+        return render_template('owner/owner_search_post.html', title='Search Result', search_post=search_post, query=query)
+    
     page = request.args.get('page', 1, type=int)
     posts = Post.query.order_by(Post.timestamp.desc()).paginate(
         page, app.config['POSTS_PER_PAGE'], False
@@ -182,6 +196,12 @@ def addproduct():
             flash('Product successfully added!')
             return redirect(url_for('addproduct'))
 
+
+    query = request.args.get('query')
+    if query:
+        search_product = Product.query.filter(Product.title.contains(query)).all()
+        return render_template('owner/owner_search_post.html', title='Search Result', search_product=search_product, query=query)
+
     return render_template('owner/owner_addproduct.html', title='Add Product', product=None)
 
 
@@ -223,6 +243,11 @@ def delete_product(id):
 
 @app.route('/product')
 def product():
+    query = request.args.get('query')
+    if query:
+        search_product = Product.query.filter(Product.title.contains(query)).all()
+        return render_template('owner/owner_search_post.html', title='Search Result', search_product=search_product, query=query)
+
     page = request.args.get('page', type=int)
     products = Product.query.order_by(Product.timestamp.desc()).paginate(
         page, app.config['POSTS_PER_PAGE'], False

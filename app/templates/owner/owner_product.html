@@ -26,6 +26,7 @@
             <div class="pop ">
                 <div class="pop_box ">
                     {% if product %}
+
                     <i class="fas fa-exclamation"></i>
                     <h1>Your Product will be deleted Permanently!</h1>
                     <label>Are you sure to proceed?</label>
@@ -34,6 +35,7 @@
                         <a href="" class="btn1" onclick="remove_cssClass()">Cancel Process</a>
                         <a href=" {{ url_for('delete_product', id=product.id) }} " class="btn2">Delete Product</a>
                     </div>
+                    
                     {% endif %}
                 
                 </div>
