@@ -16,3 +16,5 @@ class Config(object):
     CKEDITOR_PKG_TYPE = 'basic'
 
     POSTS_PER_PAGE = 7
+
+    POST_PER_PAGE = 9

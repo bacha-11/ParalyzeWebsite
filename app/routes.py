@@ -16,7 +16,15 @@ def index():
 
 @app.route('/blog')
 def blog():
-    return render_template('client/blog.html', title='Blog')
+    page = request.args.get("page", 1, type=int)
+    posts = Post.query.paginate(
+        page, app.config["POST_PER_PAGE"], False
+    )
+    next_url = url_for('blog', page=posts.next_num) \
+        if posts.has_next else None
+    prev_url = url_for('blog', page=posts.prev_num) \
+        if posts.has_prev else None
+    return render_template('client/blog.html', title='Blog', posts=posts.items, next_url=next_url, prev_url=prev_url, b64encode=b64encode)
 
 
 @app.route('/post-detial-view/<id>')
