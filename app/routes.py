@@ -6,14 +6,11 @@ from werkzeug.utils import secure_filename
 
 app.config["ALLOWED_IMAGE_EXTENSIONS"] = ["JPEG", "JPG", "PNG", "GIF"]
 
-
 @app.route('/')
 def index():
     posts = Post.query.order_by(Post.timestamp.desc()).all()[0:6]
-    for post in posts:
-        image = b64encode(post.image).decode("utf-8")
-    # image = b64encode(posts.image).decode("utf-8")
-    return render_template('client/index.html', title='Home Page', posts=posts, image=image)
+    
+    return render_template('client/index.html', title='Home Page', posts=posts, b64encode=b64encode)
 
 
 
@@ -22,9 +19,14 @@ def blog():
     return render_template('client/blog.html', title='Blog')
 
 
-@app.route('/post-detial-view')
-def post_view():
-    return render_template('client/post_view.html', title='Blog Post')
+@app.route('/post-detial-view/<id>')
+def post_view(id):
+    posts = Post.query.order_by(Post.timestamp.desc()).all()[0:9]
+    post = Post.query.filter_by(id=id).first()
+    image = b64encode(post.image).decode("utf-8")
+    post.article_views = post.article_views + 1
+    db.session.commit()
+    return render_template('client/post_view.html', title='Blog Post', post=post, image=image, posts=posts)
 
 
 @app.route('/shop-products')
@@ -118,8 +120,6 @@ def addpost():
 def owner_post_view(id):
     post = Post.query.filter_by(id=id).first()
     image = b64encode(post.image).decode("utf-8")
-    post.article_views = post.article_views + 1
-    db.session.commit()
     return render_template('owner/owner_post_view.html', title='Post Detial View', post=post, image=image)
 
 

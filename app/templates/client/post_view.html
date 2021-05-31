@@ -10,30 +10,11 @@
 
 <div class="post_view_page">
     <div class="post_view_content">
-        <h1>7 Steps To Overcome Your FEAR Of CONFLICT & Get COMFY W/ CONFRONTATION</h1>
-        <img src=" {{ url_for('static', filename='images/boxing3.jpg')}} " alt="product pic">
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, 
-            itaque ipsum eveniet minima est commodi sed quam, accusantium 
-            ex mollitia nostrum aspernatur. Odio soluta tempora eius saepe, nostrum atque quidem.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, 
-            itaque ipsum eveniet minima est commodi sed quam, accusantium 
-            ex mollitia nostrum aspernatur. Odio soluta tempora eius saepe, nostrum atque quidem.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, 
-            itaque ipsum eveniet minima est commodi sed quam, accusantium 
-            ex mollitia nostrum aspernatur. Odio soluta tempora eius saepe, nostrum atque quidem.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, 
-            itaque ipsum eveniet minima est commodi sed quam, accusantium 
-            ex mollitia nostrum aspernatur. Odio soluta tempora eius saepe, nostrum atque quidem.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, 
-            itaque ipsum eveniet minima est commodi sed quam, accusantium 
-            ex mollitia nostrum aspernatur. Odio soluta tempora eius saepe, nostrum atque quidem.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, 
-            itaque ipsum eveniet minima est commodi sed quam, accusantium 
-            ex mollitia nostrum aspernatur. Odio soluta tempora eius saepe, nostrum atque quidem.
-        </p>
-
+        <h1>{{post.title}}</h1>
+        <img src=" data:;base64, {{ image }} " alt="product pic">
+        <p>{{post.article|safe}}</p>
     </div>
+
 
     <div class="post_rightside_content">
 
@@ -47,15 +28,17 @@
 
         <div class="latest_post">
             <h4>Latest Updates</h4>
-            <p><a href="#"> 7 Steps To Overcome Your FEAR </a></p>
-            <p><a href="#"> 7 Steps To Overcome Your FEAR Of CONFLICT & Get COMFY W/ CONFRONTATION </a></p>
+            {% for post in posts %}
+            <p><a href="{{ url_for('post_view', id=post.id)}}"> {{post.title}} </a></p>
+            {% endfor %}
+            <!-- <p><a href="#"> 7 Steps To Overcome Your FEAR Of CONFLICT & Get COMFY W/ CONFRONTATION </a></p>
             <p><a href="#"> This is Post 3 </a></p>
             <p><a href="#"> This is Post 4 </a></p>
             <p><a href="#"> This is Post 1 </a></p>
             <p><a href="#"> This is Post 2 </a></p>
             <p><a href="#"> This is Post 3 </a></p>
             <p><a href="#"> This is Post 4 </a></p>
-            <p><a href="#"> This is Post 9 </a></p>
+            <p><a href="#"> This is Post 9 </a></p> -->
         </div>
     </div>
 </div>
