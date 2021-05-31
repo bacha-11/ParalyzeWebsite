@@ -1,4 +1,5 @@
 from datetime import datetime
+from enum import unique
 from app import db
 
 
@@ -28,6 +29,28 @@ class Product(db.Model):
     product_views = db.Column(db.Integer, default=0)
     timestamp = db.Column(db.DateTime, default=datetime.utcnow)
     
+    def __str__(self):
+        return "Product -> {}".format(self.title)
+
+
+
+class Subscriber(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(132), nullable=False, unique=True)
+
+    def __str__(self):
+        return 'Email -> {}'.format(self.email)
+
+
+class Contact(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(132), nullable=False)
+    email = db.Column(db.String(132), nullable=False)
+    question = db.Column(db.String(500), nullable=False)
+
+    def __str__(self):
+        return 'Name -> {}'.format(self.name)
+
 
 
 
