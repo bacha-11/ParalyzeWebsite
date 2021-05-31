@@ -33,14 +33,16 @@
 
 <div class="shoping_card_content">
     
+    {% for product in products %}
     <div class="shoping_card">
-        <img src=" {{ url_for('static', filename='images/bottle.png')}} " alt="">
-        <h2>best shoes product ever</h2>
-        <span>$ 200</span>
-        <a href="#"><button> BUY </button></a>
+        <img src=" data:;base64,{{ b64encode(product.product_image).decode('utf-8') }} " alt="">
+        <h2>{{product.title}}</h2>
+        <span>$ {{product.price}}</span>
+        <a href=" {{product.product_url}} "><button> BUY </button></a>
     </div>
+    {% endfor %}
 
-    <div class="shoping_card">
+    <!-- <div class="shoping_card">
         <img src=" {{ url_for('static', filename='images/camera.jpeg')}} " alt="">
         <h2>best shoes product ever</h2>
         <span>$ 200</span>
@@ -73,7 +75,7 @@
         <h2>best shoes product ever</h2>
         <span>$ 200</span>
         <a href="#"><button> BUY </button></a>
-    </div>
+    </div> -->
 
 </div>
 

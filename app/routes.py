@@ -6,6 +6,9 @@ from werkzeug.utils import secure_filename
 
 app.config["ALLOWED_IMAGE_EXTENSIONS"] = ["JPEG", "JPG", "PNG", "GIF"]
 
+
+
+
 @app.route('/')
 def index():
     posts = Post.query.order_by(Post.timestamp.desc()).all()[0:6]
@@ -39,7 +42,8 @@ def post_view(id):
 
 @app.route('/shop-products')
 def shop():
-    return render_template('client/shop.html', title='Shop')
+    products = Product.query.all()
+    return render_template('client/shop.html', title='Shop', products=products, b64encode=b64encode)
 
 
 @app.route('/contact')
