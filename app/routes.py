@@ -9,8 +9,11 @@ app.config["ALLOWED_IMAGE_EXTENSIONS"] = ["JPEG", "JPG", "PNG", "GIF"]
 
 @app.route('/')
 def index():
-    
-    return render_template('client/index.html', title='Home Page')
+    posts = Post.query.order_by(Post.timestamp.desc()).all()[0:6]
+    for post in posts:
+        image = b64encode(post.image).decode("utf-8")
+    # image = b64encode(posts.image).decode("utf-8")
+    return render_template('client/index.html', title='Home Page', posts=posts, image=image)
 
 
 
