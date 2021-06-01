@@ -1,6 +1,6 @@
 from app import app, db
 from base64 import b64encode
-from app.models import Post, Product
+from app.models import Post, Product, Subscriber
 from flask import redirect, request, render_template, url_for, flash
 from werkzeug.utils import secure_filename
 
@@ -9,15 +9,29 @@ app.config["ALLOWED_IMAGE_EXTENSIONS"] = ["JPEG", "JPG", "PNG", "GIF"]
 
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
     posts = Post.query.order_by(Post.timestamp.desc()).all()[0:6]
+
+    if request.method == 'POST':
+        email = request.form['email']
+
+        subscriber = Subscriber.query.filter_by(email=email).first()
+        if subscriber:
+            flash('Already subscribe our news least!')
+            return redirect(url_for('index'))  
+
+        new_sub = Subscriber(email=email)
+        db.session.add(new_sub)
+        db.session.commit()
+        flash("Successfully subscribe our news least!")
+        return redirect(url_for('index'))
     
     return render_template('client/index.html', title='Home Page', posts=posts, b64encode=b64encode)
 
 
 
-@app.route('/blog')
+@app.route('/blog', methods=['GET', 'POST'])
 def blog():
     page = request.args.get("page", 1, type=int)
     posts = Post.query.paginate(
@@ -27,22 +41,67 @@ def blog():
         if posts.has_next else None
     prev_url = url_for('blog', page=posts.prev_num) \
         if posts.has_prev else None
+
+    if request.method == 'POST':
+        email = request.form['email']
+
+        subscriber = Subscriber.query.filter_by(email=email).first()
+        if subscriber:
+            flash('Already subscribe our news least!')
+            return redirect(url_for('blog'))  
+
+        new_sub = Subscriber(email=email)
+        db.session.add(new_sub)
+        db.session.commit()
+        flash("Successfully subscribe our news least!")
+        return redirect(url_for('blog'))
+
     return render_template('client/blog.html', title='Blog', posts=posts.items, next_url=next_url, prev_url=prev_url, b64encode=b64encode)
 
 
-@app.route('/post-detial-view/<id>')
+@app.route('/post-detial-view/<id>', methods=['GET', 'POST'])
 def post_view(id):
     posts = Post.query.order_by(Post.timestamp.desc()).all()[0:9]
     post = Post.query.filter_by(id=id).first()
     image = b64encode(post.image).decode("utf-8")
     post.article_views = post.article_views + 1
     db.session.commit()
+
+    if request.method == 'POST':
+        email = request.form['email']
+
+        subscriber = Subscriber.query.filter_by(email=email).first()
+        if subscriber:
+            flash('Already subscribe our news least!')
+            return redirect(url_for('post_view', id=post.id))  
+
+        new_sub = Subscriber(email=email)
+        db.session.add(new_sub)
+        db.session.commit()
+        flash("Successfully subscribe our news least!")
+        return redirect(url_for('post_view', id=post.id))
+
     return render_template('client/post_view.html', title='Blog Post', post=post, image=image, posts=posts)
 
 
-@app.route('/shop-products')
+@app.route('/shop-products', methods=['GET', 'POST'])
 def shop():
     products = Product.query.all()
+
+    if request.method == 'POST':
+        email = request.form['email']
+
+        subscriber = Subscriber.query.filter_by(email=email).first()
+        if subscriber:
+            flash('Already subscribe our news least!')
+            return redirect(url_for('shop'))  
+
+        new_sub = Subscriber(email=email)
+        db.session.add(new_sub)
+        db.session.commit()
+        flash("Successfully subscribe our news least!")
+        return redirect(url_for('shop'))
+
     return render_template('client/shop.html', title='Shop', products=products, b64encode=b64encode)
 
 
