@@ -73,6 +73,36 @@
 
                 {% endfor %}
 
+                {% elif search_email %}
+
+                {% for sub in search_email %}
+                <div class="post_content">
+                    <label>{{sub.email}}</label>
+                    <span class="fas fa-trash" onclick="add_CssClass()"></span>
+                </div>
+
+
+                <div class="pop ">
+                    <div class="pop_box ">
+                        <i class="fas fa-exclamation"></i>
+
+                        {% if sub %}
+
+                        <h1>Your Subscriber will be deleted Permanently!</h1>
+                        <label>Are you sure to proceed?</label>
+                    
+                        <div class="btns">
+                            <a href="" class="btn1" onclick="remove_cssClass()">Cancel Process</a>
+                            <a href=" {{ url_for('delete_subscriber', id=sub.id) }} " class="btn2">Delete Subscriber</a>
+                        </div>
+                    
+                        {% endif %}
+
+                    </div>
+                </div>
+
+            {% endfor %}
+
                 {% else %}
                     <div class="post">
                         <h2>Your search - did not match any documents.</h2>

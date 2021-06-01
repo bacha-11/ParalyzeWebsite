@@ -14,50 +14,43 @@
         <div class="subscriber_page">
             <h2>Subscriber</h2>
 
+            {% for sub in subscribers %}
             <div class="subscriber_content">
-                <label>Example@gmail.com</label><a href="#">
-                <span class="fas fa-trash"></span></a>
-            </div>
-
-            <div class="subscriber_content">
-                <label>Example@gmail.com</label>
-                <a href="#"><span class="fas fa-trash"></span></a>
+                <label>{{sub.email}}</label>
+                <span class="fas fa-trash" onclick="add_CssClass()"></span>
             </div>
 
 
-            <div class="subscriber_content">
-                <label>Example@gmail.com</label>
-                <a href="#"><span class="fas fa-trash"></span></a>
+            <div class="pop ">
+                <div class="pop_box ">
+
+                    {% if sub %}
+
+                    <i class="fas fa-exclamation"></i>
+                    <h1>Your Subscriber will be deleted Permanently!</h1>
+                    <label>Are you sure to proceed?</label>
+                
+                    <div class="btns">
+                        <a href="" class="btn1" onclick="remove_cssClass()">Cancel Process</a>
+                        <a href=" {{ url_for('delete_subscriber', id=sub.id) }} " class="btn2">Delete Subscriber</a>
+                    </div>
+                
+                    {% endif %}
+
+                </div>
             </div>
 
+            {% endfor %}
 
-            <div class="subscriber_content">
-                <label>Example@gmail.com</label>
-                <a href="#"><span class="fas fa-trash"></span></a>
-            </div>
-
-
-            <div class="subscriber_content">
-                <label>Example1@gmail.com</label>
-                <a href="#"><span class="fas fa-trash"></span></a>
-            </div>
-
-
-            <div class="subscriber_content">
-                <label>Example11123@gmail.com</label>
-                <a href="#"><span class="fas fa-trash"></span></a>
-            </div>
-
-
-            <div class="subscriber_content">
-                <label>Example11@gmail.com</label>
-                <a href="#"><span class="fas fa-trash"></span></a>
-            </div>
-
+            
 
             <div class="next_pre_btn">
-                <a href="#">next</a>
-                <a href="#">previous</a>
+                {% if next_url %}
+                <a href=" {{next_url}} ">next</a>
+                {% endif %}
+                {% if prev_url %}
+                <a href=" {{prev_url}} ">previous</a>
+                {% endif %}
             </div>
         </div>
     </div>

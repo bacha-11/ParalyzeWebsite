@@ -34,7 +34,7 @@
 
             <div class="card">
                 <div class="card_content">
-                    <h1>170</h1>
+                    <h1>{{sub_count|length}}</h1>
                     <p>Subscriber</p>
                 </div>
                 <span class="fas fa-users"></span>
@@ -80,12 +80,10 @@
             <div class="subscribe">
                 <h2>Latest Subscriber</h2>
                 <div class="subscribe_content">
-                    <label>Example@gmail.com</label>
-                    <label>Example111@gmail.com</label>
-                    <label>Example@gmail.com</label>
-                    <label>Example@gmail.com</label>
-                    <label>Example11@gmail.com</label>
-                    <label>Example22@gmail.com</label>
+                    {% for sub in subscribers %}
+                    <label>{{sub.email}}</label>
+                    {% endfor %}
+                    
                 </div>
             </div>
 

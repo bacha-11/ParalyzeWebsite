@@ -1,3 +1,4 @@
+from sqlalchemy.orm import query
 from app import app, db
 from base64 import b64encode
 from app.models import Contact, Post, Product, Subscriber
@@ -133,14 +134,16 @@ def about():
 def dashboard():
     post_count = Post.query.all()
     product_count = Product.query.all()
+    sub_count = Subscriber.query.all()
     posts = Post.query.order_by(Post.timestamp.desc()).all()[0:5]
+    subscribers = Subscriber.query.order_by(Subscriber.id.desc()).all()[0:6]
 
     query = request.args.get('query')
     if query:
         search_post = Post.query.filter(Post.title.contains(query)).all()
         return render_template('owner/owner_search_post.html', title='Search Result', search_post=search_post, query=query)
 
-    return render_template('owner/owner_index.html', title='Admin Dashboard', posts=posts, post_count=post_count, product_count=product_count)
+    return render_template('owner/owner_index.html', title='Admin Dashboard', posts=posts, post_count=post_count, product_count=product_count, sub_count=sub_count, subscribers=subscribers)
 
 
 
@@ -332,7 +335,7 @@ def product():
         search_product = Product.query.filter(Product.title.contains(query)).all()
         return render_template('owner/owner_search_post.html', title='Search Result', search_product=search_product, query=query)
 
-    page = request.args.get('page', type=int)
+    page = request.args.get('page', 1, type=int)
     products = Product.query.order_by(Product.timestamp.desc()).paginate(
         page, app.config['POSTS_PER_PAGE'], False
     )
@@ -355,5 +358,33 @@ def owner_product_view(id):
 
 @app.route('/subscriber')
 def subscriber():
-    return render_template('owner/owner_subscriber.html', title='Subscriber')
+    page = request.args.get('page', 1, type=int)
+    subscribers = Subscriber.query.order_by(Subscriber.id.desc()).paginate(
+        page, app.config['POSTS_PER_PAGE'], False
+    )
+
+    next_url = url_for('subscriber', page=subscribers.next_num) \
+        if subscribers.has_next else None
+
+    prev_url = url_for('subscriber', page=subscribers.prev_num) \
+        if subscribers.has_prev else None
+
+
+    query = request.args.get('query')
+    if query:
+        search_email = Subscriber.query.filter(Subscriber.email.contains(query)).all()
+        return render_template('owner/owner_search_post.html', title='Search Result', search_email=search_email, query=query)
+
+    return render_template('owner/owner_subscriber.html', title='Subscriber', subscribers=subscribers.items, next_url=next_url, prev_url=prev_url)
+
+
+@app.route('/delete_subscriber<id>')
+def delete_subscriber(id):
+    subscriber = Subscriber.query.filter_by(id=id).first()
+    db.session.delete(subscriber)
+    db.session.commit()
+    flash("Successfully deleted!")
+    return redirect(url_for('subscriber'))
+
+
 # End Dashboard
