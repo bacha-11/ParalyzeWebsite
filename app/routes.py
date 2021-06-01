@@ -1,6 +1,6 @@
 from app import app, db
 from base64 import b64encode
-from app.models import Post, Product, Subscriber
+from app.models import Contact, Post, Product, Subscriber
 from flask import redirect, request, render_template, url_for, flash
 from werkzeug.utils import secure_filename
 
@@ -105,8 +105,18 @@ def shop():
     return render_template('client/shop.html', title='Shop', products=products, b64encode=b64encode)
 
 
-@app.route('/contact')
+@app.route('/contact', methods=['GET', 'POST'])
 def contact():
+    if request.method == "POST":
+        name = request.form['name']
+        email = request.form['email']
+        question = request.form['question']
+        new_contact = Contact(name=name, email=email, question=question)
+        db.session.add(new_contact)
+        db.session.commit()
+        flash('{} your query is successfully send!'.format(name.title()))
+        return redirect(url_for('contact'))
+        
     return render_template('client/contact.html', title='Contact')
 
 
