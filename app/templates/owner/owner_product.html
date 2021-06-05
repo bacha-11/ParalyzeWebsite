@@ -19,11 +19,11 @@
             <div class="postpage_content">
                 <label><a href=" {{ url_for('owner_product_view', id=product.id) }} ">{{product.title}}</a></label>
                 <a href=" {{ url_for('edit_product', id=product.id) }} "><span class="fas fa-edit"></span></a>
-                <span onclick="add_CssClass()" class="fas fa-trash"></span>
+                <a href=" {{ url_for('delete_product', id=product.id) }} "><span onclick="return confirm('Are you sure to proceed?')"  class="fas fa-trash"></span></a>
                 <a href=" {{ url_for('owner_product_view', id=product.id) }} "><span class="fas fa-arrow-right"></span></a>
             </div>
 
-            <div class="pop ">
+            <!-- <div class="pop ">
                 <div class="pop_box ">
                     {% if product %}
 
@@ -39,7 +39,7 @@
                     {% endif %}
                 
                 </div>
-                </div>
+                </div> -->
 
             {% endfor %}
 

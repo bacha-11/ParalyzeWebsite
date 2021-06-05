@@ -20,12 +20,13 @@
             <div class="list_of_contact">
                 <label> {{contact.name}} </label>
                 <label> {{contact.email}} </label>
-                <span onclick="add_CssClass()" data-bs-toggle="modal" data-bs-target="#exampleModal" class="fas fa-trash"></span> 
+                <a href=" {{ url_for('delete_contact', id=contact.id)}} ">
+                <span onclick=" return confirm('Are you sure to proceed?')" class="fas fa-trash"></span></a> 
                 <a href=" {{ url_for('delete_contact', id=contact.id)}} "><span class="fas fa-arrow-right"></span></a>
             </div>
 
 
-            <div class="pop modal" id="exampleModal">
+            <!-- <div class="pop">
                 <div class="pop_box ">
                     {% if contact %}
                     <i class="fas fa-exclamation"></i>
@@ -39,7 +40,7 @@
                     {% endif %}
                 
                 </div>
-            </div>
+            </div> -->
 
             {% endfor %}
 
