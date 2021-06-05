@@ -64,19 +64,19 @@
 
 
 .dashbord_navbar li{
-    padding-bottom: 2rem;
+    padding-bottom: 1rem;
 }
 
 
 .dashbord_navbar li span{
     color: #9bc634;
-    font-size: 2rem;
+    font-size: 1.8rem;
 }
 
 
 .dashbord_navbar li a{
     color: #fff;
-    font-size: 2rem;
+    font-size: 1.8rem;
     letter-spacing: 2px;
     padding-left: 1rem;
     text-transform: uppercase;
@@ -681,6 +681,70 @@ form button:hover{
 
 .shoping_card a button:hover{
     color: #9bc634;
+}
+
+
+.contact_page{
+    width: 97%;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0px auto;
+    margin-top: 1rem;
+    background-color: #fff;
+}
+
+
+.contact_page h2{
+    color: #1b2631;
+    text-align: center;
+    padding: 1rem;
+    text-transform: uppercase;
+}
+
+
+.contact_page .list_of_contact{
+    display: flex;
+    justify-content: space-around;
+    color: #1b2631;
+    padding: 1rem;
+}
+
+
+.list_of_contact label{
+    width: 30%;
+}
+
+
+.list_of_contact .fa-trash{
+    color: #e60000;
+    cursor: pointer;
+}
+
+
+.list_of_contact .fa-trash:hover{
+    color: #cc0000;
+}
+
+
+.list_of_contact .fa-arrow-right{
+    color: #8e44ad;
+    cursor: pointer;
+}
+
+
+
+.list_of_contact .fa-arrow-right:hover{
+    color: #9b59b6;
+}
+
+
+.contact_page .next_pre_btn{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-top: 1.5rem;
 }
 
 

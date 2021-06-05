@@ -106,6 +106,7 @@ def shop():
     return render_template('client/shop.html', title='Shop', products=products, b64encode=b64encode)
 
 
+
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     if request.method == "POST":
@@ -385,6 +386,30 @@ def delete_subscriber(id):
     db.session.commit()
     flash("Successfully deleted!")
     return redirect(url_for('subscriber'))
+
+
+
+@app.route('/contact-list')
+def contact_list():
+    page = request.args.get('page', 1, type=int)
+    contacts = Contact.query.order_by(Contact.id.desc()).paginate(
+        page, app.config['POSTS_PER_PAGE'], False
+    )
+    next_url = url_for('contact_list', page=contacts.next_num) \
+        if contacts.has_next else None
+    prev_url = url_for('contact_list', page=contacts.prev_num) \
+        if contacts.has_prev else None
+
+    return render_template('owner/owner_contact_view.html', title='Contact', contacts=contacts.items, next_url=next_url, prev_url=prev_url)
+
+
+@app.route("/delete_contact/<id>")
+def delete_contact(id):
+    contact = Contact.query.get_or_404(id)
+    db.session.delete(contact)
+    db.session.commit()
+    flash("Successfully Deleted!")
+    return redirect(url_for("contact_list"))
 
 
 # End Dashboard
