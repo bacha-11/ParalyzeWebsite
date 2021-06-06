@@ -749,6 +749,37 @@ form button:hover{
 
 
 
+.contact_detial_page{
+    width: 97%;
+    height: 80vh;
+    color: #1b2631;
+    margin: 0px auto;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    box-sizing: border-box;
+    background-color: #fff;
+}
+
+
+.contact_detial_page :first-child{
+    font-size: 2rem;
+}
+
+
+.contact_detial_page label{
+    padding-bottom: 1rem;
+}
+
+
+.contact_detial_page p{
+    text-align: justify;
+    padding-bottom: 1rem;
+}
+
+
+
 .pop{
     width: 100%;
     height: 100vh;

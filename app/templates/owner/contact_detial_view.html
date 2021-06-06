@@ -1,0 +1,30 @@
+{% extends 'owner/owner_base.html' %}
+
+
+{% block content %}
+
+
+
+<div class="dashboard">
+
+    {% include 'owner/_sidebar.html' %}
+
+    <div class="right_container">
+
+        {% include 'owner/_searchbar.html' %}
+
+        <div class="contact_detial_page">
+            <!-- <div class="contact_detial_content">
+
+            </div> -->
+            <label>{{contact.name}}</label>
+            <label>{{contact.email}}</label>
+            <p>{{contact.question}}</p>
+
+        </div>
+
+
+    </div>
+</div>
+
+{% endblock %}

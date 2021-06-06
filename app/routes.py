@@ -412,4 +412,10 @@ def delete_contact(id):
     return redirect(url_for("contact_list"))
 
 
+@app.route('/contact_detial_view/<id>')
+def contact_detial_view(id):
+    contact = Contact.query.filter_by(id=id).first()
+    return render_template('owner/contact_detial_view.html', title='Contact Detial View', contact=contact)
+
+
 # End Dashboard
