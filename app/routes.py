@@ -19,13 +19,13 @@ def index():
 
         subscriber = Subscriber.query.filter_by(email=email).first()
         if subscriber:
-            flash('Already subscribe our news least!')
+            flash('Already subscribe our news least!', "warning")
             return redirect(url_for('index'))  
 
         new_sub = Subscriber(email=email)
         db.session.add(new_sub)
         db.session.commit()
-        flash("Successfully subscribe our news least!")
+        flash("Successfully subscribe our news least!", "success")
         return redirect(url_for('index'))
     
     return render_template('client/index.html', title='Home Page', posts=posts, b64encode=b64encode)
@@ -48,13 +48,13 @@ def blog():
 
         subscriber = Subscriber.query.filter_by(email=email).first()
         if subscriber:
-            flash('Already subscribe our news least!')
+            flash('Already subscribe our news least!', "warning")
             return redirect(url_for('blog'))  
 
         new_sub = Subscriber(email=email)
         db.session.add(new_sub)
         db.session.commit()
-        flash("Successfully subscribe our news least!")
+        flash("Successfully subscribe our news least!", "success")
         return redirect(url_for('blog'))
 
     return render_template('client/blog.html', title='Blog', posts=posts.items, next_url=next_url, prev_url=prev_url, b64encode=b64encode)
@@ -73,13 +73,13 @@ def post_view(id):
 
         subscriber = Subscriber.query.filter_by(email=email).first()
         if subscriber:
-            flash('Already subscribe our news least!')
+            flash('Already subscribe our news least!', "warning")
             return redirect(url_for('post_view', id=post.id))  
 
         new_sub = Subscriber(email=email)
         db.session.add(new_sub)
         db.session.commit()
-        flash("Successfully subscribe our news least!")
+        flash("Successfully subscribe our news least!", "success")
         return redirect(url_for('post_view', id=post.id))
 
     return render_template('client/post_view.html', title='Blog Post', post=post, image=image, posts=posts)
@@ -94,13 +94,13 @@ def shop():
 
         subscriber = Subscriber.query.filter_by(email=email).first()
         if subscriber:
-            flash('Already subscribe our news least!')
+            flash('Already subscribe our news least!', "warning")
             return redirect(url_for('shop'))  
 
         new_sub = Subscriber(email=email)
         db.session.add(new_sub)
         db.session.commit()
-        flash("Successfully subscribe our news least!")
+        flash("Successfully subscribe our news least!", "success")
         return redirect(url_for('shop'))
 
     return render_template('client/shop.html', title='Shop', products=products, b64encode=b64encode)
@@ -116,7 +116,7 @@ def contact():
         new_contact = Contact(name=name, email=email, question=question)
         db.session.add(new_contact)
         db.session.commit()
-        flash('{} your query is successfully send!'.format(name.title()))
+        flash('{} your query is successfully send!'.format(name.title()), "success")
         return redirect(url_for('contact'))
         
     return render_template('client/contact.html', title='Contact')
@@ -158,7 +158,7 @@ def allowed_image(filename):
     if ext.upper() in app.config['ALLOWED_IMAGE_EXTENSIONS']:
         return True
     else:
-        flash('File must be PNG, JPG, JPEG, GIF !')
+        flash('File must be PNG, JPG, JPEG, GIF !', "danger")
         return False
 
 
@@ -172,14 +172,14 @@ def addpost():
 
         for check_title in posts:
             if title == check_title.title:
-                flash('Title already present chose a different title!')
+                flash('Title already present chose a different title!', "danger")
                 return redirect(url_for('addpost'))
 
 
         image = request.files['image']
 
         if image.filename == '':
-            flash('File must have name!')
+            flash('File must have name!', "warning")
             return redirect(url_for('addpost'))
 
         if allowed_image(image.filename):
@@ -188,7 +188,7 @@ def addpost():
             new_post = Post(title=title, image=image.read(), image_name=image_name, article=article)
             db.session.add(new_post)
             db.session.commit()
-            flash('Post successfully added!')
+            flash('Post successfully added!', "success")
             return redirect(url_for('addpost'))
 
     
@@ -233,7 +233,7 @@ def delete_post(id):
     post = Post.query.filter_by(id=id).first()
     db.session.delete(post)
     db.session.commit()
-    flash('Post successfully deleted!')
+    flash('Post successfully deleted!', "success")
     return redirect(url_for('post'))
 
 
@@ -247,7 +247,7 @@ def edit_post(id):
         img = request.files['image']
 
         if img.filename == '':
-            flash('File must have name!')
+            flash('File must have name!', "warning")
             return redirect(url_for('edit_post'))
 
         if allowed_image(img.filename):
@@ -268,7 +268,7 @@ def addproduct():
         product_image = request.files['product_image']
         
         if product_image.filename == '':
-            flash('File must have name!')
+            flash('File must have name!', "warning")
             return redirect(url_for('addproduct'))
 
         if allowed_image(product_image.filename):
@@ -281,7 +281,7 @@ def addproduct():
                                  product_image_name=product_image_name)
             db.session.add(new_product)
             db.session.commit()
-            flash('Product successfully added!')
+            flash('Product successfully added!', "success")
             return redirect(url_for('addproduct'))
 
 
@@ -305,14 +305,14 @@ def edit_product(id):
         product_image = request.files['product_image']
 
         if product_image.filename == '':
-            flash('File must have name')
+            flash('File must have name', "warning")
             return redirect(url_for('edit_image'))
 
         if allowed_image(product_image.filename):
             product.product_image_name = secure_filename(product_image.filename)
             product.product_image = product_image.read()
             db.session.commit()
-            flash('Product successfully updated!')
+            flash('Product successfully updated!', "success")
             return redirect(url_for('product'))
 
     return render_template('owner/owner_addproduct.html', title='Edit Product', product=product)
@@ -324,7 +324,7 @@ def delete_product(id):
     product = Product.query.filter_by(id=id).first()
     db.session.delete(product)
     db.session.commit()
-    flash('Product successfully deleted!')
+    flash('Product successfully deleted!', "success")
     return redirect(url_for('product'))
 
 
@@ -384,7 +384,7 @@ def delete_subscriber(id):
     subscriber = Subscriber.query.filter_by(id=id).first()
     db.session.delete(subscriber)
     db.session.commit()
-    flash("Successfully deleted!")
+    flash("Successfully deleted!", "success")
     return redirect(url_for('subscriber'))
 
 
@@ -408,7 +408,7 @@ def delete_contact(id):
     contact = Contact.query.get_or_404(id)
     db.session.delete(contact)
     db.session.commit()
-    flash("Successfully Deleted!")
+    flash("Successfully Deleted!", "success")
     return redirect(url_for("contact_list"))
 
 

@@ -902,6 +902,44 @@ footer{
 
 
 
+.alert{
+    width: 100%;
+    height: 3rem;
+    font-size: 18px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-transform: capitalize;
+}
+
+
+.alert .fa-times{
+    cursor: pointer;
+}
+
+
+.remove_alert{
+    display: none;
+}
+
+
+.success{
+    background-color: #badc58;
+}
+
+
+.warning{
+    background-color: #f6e58d;
+}
+
+
+.danger{
+    background-color: #ff7979;
+}
+
+
+
 
 
 

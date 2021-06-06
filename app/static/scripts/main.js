@@ -42,3 +42,11 @@ function remove_cssClass(){
     document.getElementsByClassName('pop_box')[0].classList.remove('popactive')
 }
 
+
+// close message alert
+
+function alertClose(){
+    document.getElementsByClassName('alert')[0].classList.add('remove_alert')
+}
+
+
