@@ -816,6 +816,64 @@ form button:hover{
 }
 
 
+.login_form{
+    width: 400px;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0px auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    background-color: #4a69bd;
+}
+
+
+.login_form h1{
+    color: #fff;
+    padding: 3rem;
+}
+
+
+.login_form form{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.login_form form input{
+    width: 380px;
+    height: 8vh;
+    font-size: 18px;
+    margin: 1rem;
+    border: none;
+    outline: none;
+}
+
+
+.login_form input[type="text"], input[type="password"]{
+    padding-left: 10px;
+}
+
+
+.login_form input[type="submit"]{
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+
+.login_form input[type="submit"]:hover{
+    color: #fff;
+    background-color: #1e3799;
+}
+
+
+
 
 .pop{
     width: 100%;

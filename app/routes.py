@@ -131,6 +131,12 @@ def about():
 
 # Dashboard code start from here
 
+@app.route('/admin-login')
+def login():
+    return render_template('owner/owner_login.html', title='Admin Login')
+
+
+
 @app.route('/dashboard')
 def dashboard():
     post_count = Post.query.all()
