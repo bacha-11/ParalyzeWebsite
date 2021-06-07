@@ -161,6 +161,11 @@ def login():
 
 
 
+@app.route('/admin-registration')
+def registration():
+    return render_template('owner/owner_registration.html', title='Admin Registration')
+
+
 @app.route('/list-of-admin', methods=['GET', 'POST'])
 def list_of_admin():
     return render_template('owner/list_of_admin.html', title='Admin List')

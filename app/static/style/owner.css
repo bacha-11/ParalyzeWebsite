@@ -818,7 +818,7 @@ form button:hover{
 
 .login_form{
     width: 400px;
-    height: 70vh;
+    height: 75vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -848,13 +848,13 @@ form button:hover{
     width: 380px;
     height: 8vh;
     font-size: 18px;
-    margin: 1rem;
+    margin: 0.5rem;
     border: none;
     outline: none;
 }
 
 
-.login_form input[type="text"], input[type="password"]{
+.login_form input[type="text"], input[type="password"], input[type="email"]{
     padding-left: 10px;
 }
 
