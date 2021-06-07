@@ -131,8 +131,23 @@ def about():
 
 # Dashboard code start from here
 
-@app.route('/admin-login')
+@app.route('/admin-login', methods=['GET', 'POST'])
 def login():
+    admin_username = ['ijaz', 'bacha']
+    admin_password = ['1234']
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        if username in admin_username and password in admin_password:
+            flash('Successfully Login', 'success')
+            return redirect(url_for('dashboard'))
+        else:
+            flash('Invalid Username or Password', 'warning')
+            return redirect(url_for('login'))
+
+
+
     return render_template('owner/owner_login.html', title='Admin Login')
 
 
