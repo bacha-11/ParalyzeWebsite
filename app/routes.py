@@ -2,7 +2,7 @@ from sqlalchemy.orm import query
 from app import app, db
 from base64 import b64encode
 from app.models import Contact, Post, Product, Subscriber
-from flask import redirect, request, render_template, url_for, flash
+from flask import redirect, request, render_template, url_for, flash, g, session, make_response
 from werkzeug.utils import secure_filename
 
 app.config["ALLOWED_IMAGE_EXTENSIONS"] = ["JPEG", "JPG", "PNG", "GIF"]
@@ -130,26 +130,40 @@ def about():
 
 
 # Dashboard code start from here
+admin_username = ['admin']
+admin_password = ['admin']
+
+
+
+# @app.before_request
+# def before_request():
+#     g.admin_username
+
+
 
 @app.route('/admin-login', methods=['GET', 'POST'])
 def login():
-    admin_username = ['ijaz', 'bacha']
-    admin_password = ['1234']
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
 
+        # user = [x for x in admin if admin.username == username][0]
+
         if username in admin_username and password in admin_password:
+            session['username'] = admin_username
             flash('Successfully Login', 'success')
             return redirect(url_for('dashboard'))
         else:
             flash('Invalid Username or Password', 'warning')
             return redirect(url_for('login'))
 
-
-
     return render_template('owner/owner_login.html', title='Admin Login')
 
+
+
+@app.route('/list-of-admin', methods=['GET', 'POST'])
+def list_of_admin():
+    return render_template('owner/list_of_admin.html', title='Admin List')
 
 
 @app.route('/dashboard')

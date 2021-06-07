@@ -873,6 +873,86 @@ form button:hover{
 }
 
 
+.admin_page{
+    width: 97%;
+    height: 80vh;
+    margin: 0px auto;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+}
+
+
+.admin_page h2{
+    color: #1b2631;
+    text-align: center;
+    padding: 1rem;
+    text-transform: uppercase;
+}
+
+
+.admin_page button{
+    width: 15%;
+    height: 8vh;
+    color: #fff;
+    margin: 1rem;
+    font-family: inherit;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    text-shadow: 2px 2px 2px gray;
+    background-color: #9bc634;
+}
+
+
+.admin_page button:hover{
+    color: #badc58;
+}
+
+
+.admin_page .list_of_admin{
+    width: 100%;
+    height: 6vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+
+.list_of_admin label{
+    width: 20%;
+}
+
+
+.list_of_admin .fa-edit{
+    color: #9bc634;
+    cursor: pointer;
+}
+
+
+.list_of_admin .fa-edit:hover{
+    color: #badc58;
+}
+
+
+
+.list_of_admin .fa-trash{
+    color: #cc0000;
+    cursor: pointer;
+}
+
+
+.list_of_admin .fa-trash:hover{
+    color: #e60000;
+}
+
+
 
 
 .pop{
