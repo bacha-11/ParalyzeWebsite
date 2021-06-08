@@ -1,7 +1,7 @@
 from sqlalchemy.orm import query
 from app import app, db
 from base64 import b64encode
-from app.models import Contact, Post, Product, Subscriber
+from app.models import Contact, Owner, Post, Product, Subscriber
 from flask import redirect, request, render_template, url_for, flash, g, session, make_response
 from werkzeug.utils import secure_filename
 
@@ -135,44 +135,85 @@ admin_password = ['admin']
 
 
 
-# @app.before_request
-# def before_request():
-#     g.admin_username
-
+@app.before_request
+def before_request():
+    g.admin = None
+    if 'admin_id' in session:
+        admin = Owner.query.filter_by(id=session['admin_id']).first()
+        g.admin = admin
 
 
 @app.route('/admin-login', methods=['GET', 'POST'])
 def login():
+    if g.admin:
+        return redirect(url_for('dashboard'))
+
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
 
-        # user = [x for x in admin if admin.username == username][0]
+        admin = Owner.query.filter_by(username=username).first()
 
-        if username in admin_username and password in admin_password:
-            session['username'] = admin_username
-            flash('Successfully Login', 'success')
-            return redirect(url_for('dashboard'))
-        else:
-            flash('Invalid Username or Password', 'warning')
+        if admin is None or not admin.check_password(password):
+            flash('Invild password or username!', 'warning')
             return redirect(url_for('login'))
+        
+        session['admin_id'] = admin.id
+        flash('Successfully Login!', 'success')
+        return redirect(url_for('dashboard'))
 
     return render_template('owner/owner_login.html', title='Admin Login')
 
 
+@app.route('/admin-logout')
+def logout():
+    session.pop('admin_id', None)
+    flash('Successfully Logout!', 'success')
+    return redirect(url_for('login'))
 
-@app.route('/admin-registration')
+
+
+@app.route('/admin-registration', methods=['GET', 'POST'])
 def registration():
+    if not g.admin:
+        return redirect(url_for('login'))
+
+    if request.method == 'POST':
+        username = request.form['username']
+        email = request.form['email']
+        password =  request.form['password']
+        repeatpassword = request.form['repeatpassword']
+
+        if password != repeatpassword:
+            flash("Password can't be match", 'warning')
+            return redirect(url_for('registration'))
+
+        if len(password) < 8:
+            flash("Password must be 8 character or above", 'warning')
+            return redirect(url_for('registration'))
+
+        new_admin = Owner(username=username, email=email)
+        new_admin.set_password(password)
+        db.session.add(new_admin)
+        db.session.commit()
+        flash('Successfully Registred!', 'success')
+        return redirect(url_for('login'))
     return render_template('owner/owner_registration.html', title='Admin Registration')
 
 
 @app.route('/list-of-admin', methods=['GET', 'POST'])
 def list_of_admin():
+    if not g.admin:
+        return redirect(url_for('login'))
+
     return render_template('owner/list_of_admin.html', title='Admin List')
 
 
 @app.route('/dashboard')
 def dashboard():
+    if not g.admin:
+        return redirect(url_for('login'))
+
     post_count = Post.query.all()
     product_count = Product.query.all()
     sub_count = Subscriber.query.all()
@@ -204,6 +245,9 @@ def allowed_image(filename):
 
 @app.route('/addpost', methods=['GET', 'POST'])
 def addpost():
+    if not g.admin:
+        return redirect(url_for('login'))
+
     posts = Post.query.all()
     if request.method == 'POST':
         title = request.form['title']
@@ -243,6 +287,9 @@ def addpost():
 
 @app.route('/owner_post_view/<id>')
 def owner_post_view(id):
+    if not g.admin:
+        return redirect(url_for('login'))
+        
     post = Post.query.filter_by(id=id).first()
     image = b64encode(post.image).decode("utf-8")
     return render_template('owner/owner_post_view.html', title='Post Detial View', post=post, image=image)
@@ -251,6 +298,9 @@ def owner_post_view(id):
 
 @app.route('/post')
 def post():
+    if not g.admin:
+        return redirect(url_for('login'))
+        
     query = request.args.get('query')
     if query:
         search_post = Post.query.filter(Post.title.contains(query)).all()
@@ -270,6 +320,9 @@ def post():
 
 @app.route('/delete_post/<id>')
 def delete_post(id):
+    if not g.admin:
+        return redirect(url_for('login'))
+        
     post = Post.query.filter_by(id=id).first()
     db.session.delete(post)
     db.session.commit()
@@ -280,6 +333,9 @@ def delete_post(id):
 
 @app.route('/edit_post/<id>', methods=['GET', 'POST'])
 def edit_post(id):
+    if not g.admin:
+        return redirect(url_for('login'))
+        
     post = Post.query.filter_by(id=id).first()
     if request.method == 'POST':
         post.title = request.form['title']
@@ -301,6 +357,9 @@ def edit_post(id):
 
 @app.route('/addproduct', methods=['GET', 'POST'])
 def addproduct():
+    if not g.admin:
+        return redirect(url_for('login'))
+        
     if request.method == 'POST':
         title = request.form['title']
         price = request.form['price']
@@ -336,6 +395,9 @@ def addproduct():
 
 @app.route('/edit_product/<id>', methods=["GET", "POST"])
 def edit_product(id):
+    if not g.admin:
+        return redirect(url_for('login'))
+        
     product = Product.query.filter_by(id=id).first()
     
     if request.method == "POST":
@@ -361,6 +423,9 @@ def edit_product(id):
 
 @app.route('/delete_product/<id>')
 def delete_product(id):
+    if not g.admin:
+        return redirect(url_for('login'))
+        
     product = Product.query.filter_by(id=id).first()
     db.session.delete(product)
     db.session.commit()
@@ -371,6 +436,9 @@ def delete_product(id):
 
 @app.route('/product')
 def product():
+    if not g.admin:
+        return redirect(url_for('login'))
+        
     query = request.args.get('query')
     if query:
         search_product = Product.query.filter(Product.title.contains(query)).all()
@@ -391,6 +459,9 @@ def product():
 
 @app.route('/owner_product_view/<id>')
 def owner_product_view(id):
+    if not g.admin:
+        return redirect(url_for('login'))
+        
     product = Product.query.filter_by(id=id).first()
     image = b64encode(product.product_image).decode('utf-8')
     return render_template('owner/owner_product_view.html', title='Product Detial View', product=product, image=image)
@@ -399,6 +470,9 @@ def owner_product_view(id):
 
 @app.route('/subscriber')
 def subscriber():
+    if not g.admin:
+        return redirect(url_for('login'))
+        
     page = request.args.get('page', 1, type=int)
     subscribers = Subscriber.query.order_by(Subscriber.id.desc()).paginate(
         page, app.config['POSTS_PER_PAGE'], False
@@ -421,6 +495,9 @@ def subscriber():
 
 @app.route('/delete_subscriber<id>')
 def delete_subscriber(id):
+    if not g.admin:
+        return redirect(url_for('login'))
+        
     subscriber = Subscriber.query.filter_by(id=id).first()
     db.session.delete(subscriber)
     db.session.commit()
@@ -431,6 +508,9 @@ def delete_subscriber(id):
 
 @app.route('/contact-list')
 def contact_list():
+    if not g.admin:
+        return redirect(url_for('login'))
+        
     page = request.args.get('page', 1, type=int)
     contacts = Contact.query.order_by(Contact.id.desc()).paginate(
         page, app.config['POSTS_PER_PAGE'], False
@@ -445,6 +525,9 @@ def contact_list():
 
 @app.route("/delete_contact/<id>")
 def delete_contact(id):
+    if not g.admin:
+        return redirect(url_for('login'))
+        
     contact = Contact.query.get_or_404(id)
     db.session.delete(contact)
     db.session.commit()
@@ -454,6 +537,9 @@ def delete_contact(id):
 
 @app.route('/contact_detial_view/<id>')
 def contact_detial_view(id):
+    if not g.admin:
+        return redirect(url_for('login'))
+        
     contact = Contact.query.filter_by(id=id).first()
     return render_template('owner/contact_detial_view.html', title='Contact Detial View', contact=contact)
 
