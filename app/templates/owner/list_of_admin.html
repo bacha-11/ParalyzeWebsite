@@ -13,21 +13,16 @@
             <h2>List of Admin</h2>
             <a href=" {{ url_for('registration') }} "><button>Add New Admin</button></a>
 
+            {% for admin in admin_list %}
             <div class="list_of_admin">
-                <label>name</label>
-                <label>username</label>
-                <label>email</label>
-                <a href="  "><span class="fas fa-edit"></span></a>
-                <a href="  "><span onclick="return confirm('Are you sure to proceed?')"  class="fas fa-trash"></span></a> 
+                <label>{{admin.username}}</label>
+                <label>{{admin.email}}</label>
+                <a href=" {{ url_for('edit_admin', id=admin.id) }} "><span class="fas fa-edit"></span></a>
+                <a href=" {{ url_for('delete_admin', id=admin.id) }} "><span onclick="return confirm('Are you sure to proceed?')"  class="fas fa-trash"></span></a> 
             </div>
+            {% endfor %}
 
-            <div class="list_of_admin">
-                <label>name</label>
-                <label>username</label>
-                <label>email</label>
-                <a href="  "><span class="fas fa-edit"></span></a>
-                <a href="  "><span onclick="return confirm('Are you sure to proceed?')"  class="fas fa-trash"></span></a> 
-            </div>
+            
         </div>
 
     </div>

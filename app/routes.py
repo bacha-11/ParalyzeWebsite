@@ -197,8 +197,8 @@ def registration():
         db.session.add(new_admin)
         db.session.commit()
         flash('Successfully Registred!', 'success')
-        return redirect(url_for('login'))
-    return render_template('owner/owner_registration.html', title='Admin Registration')
+        return redirect(url_for('list_of_admin'))
+    return render_template('owner/owner_registration.html', title='Admin Registration', admin=None)
 
 
 @app.route('/list-of-admin', methods=['GET', 'POST'])
@@ -206,7 +206,53 @@ def list_of_admin():
     if not g.admin:
         return redirect(url_for('login'))
 
-    return render_template('owner/list_of_admin.html', title='Admin List')
+    admin_list = Owner.query.all()
+
+    return render_template('owner/list_of_admin.html', title='Admin List', admin_list=admin_list)
+
+
+
+@app.route('/edit-admin/<id>', methods=['GET', 'POST'])
+def edit_admin(id):
+    if not g.admin:
+        return redirect(url_for('dashboard'))
+
+    admin = Owner.query.filter_by(id=id).first()
+
+    if request.method == 'POST':
+        username = request.form['username']
+        email = request.form['email']
+        password = request.form['password']
+        repeatpassword = request.form['repeatpassword']
+
+        if password != repeatpassword:
+            flash("Password can't be match", 'warning')
+            return redirect(url_for('registration'))
+
+        if len(password) < 8:
+            flash("Password must be 8 character or above", 'warning')
+            return redirect(url_for('registration'))
+
+        admin.username = username
+        admin.email = email
+        admin.set_password(password)
+        db.session.commit()
+        flash('Admin Successfully Edit!', 'success')
+        return redirect(url_for('list_of_admin'))
+
+    return render_template('owner/owner_registration.html', title='Edit Admin', admin=admin)
+
+
+@app.route('/delete-admin/<id>')
+def delete_admin(id):
+    admin = Owner.query.filter_by(id=id).first()
+    if admin:
+        db.session.delete(admin)
+        db.session.commit()
+        flash('Admin successfully deleted!', 'success')
+        return redirect(url_for('list_of_admin'))
+
+
 
 
 @app.route('/dashboard')
