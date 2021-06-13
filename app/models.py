@@ -9,7 +9,8 @@ class Owner(db.Model):
     username = db.Column(db.String(128), nullable=False)
     email = db.Column(db.String(128), nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
-    last_notification_read_time = db.Column(db.DateTime)
+    last_contact_read_time = db.Column(db.DateTime)
+    last_sub_read_time = db.Column(db.DateTime)
 
     def __repr__(self):
         return 'Admin -> {}'.format(self.username)
@@ -22,11 +23,13 @@ class Owner(db.Model):
 
     
     def new_contact(self):
-        last_read_time = self.last_notification_read_time or datetime(1900, 1, 1)
+        last_read_time = self.last_contact_read_time or datetime(1900, 1, 1)
         return Contact.query.filter(Contact.timestamp > last_read_time).count()
 
 
-
+    def new_subscriber(self):
+        last_read_time = self.last_sub_read_time or datetime(1900, 1, 1)
+        return Subscriber.query.filter(Subscriber.timestamp > last_read_time).count()
 
 
 class Post(db.Model):
@@ -62,6 +65,7 @@ class Product(db.Model):
 class Subscriber(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(132), nullable=False, unique=True)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __str__(self):
         return 'Email -> {}'.format(self.email)

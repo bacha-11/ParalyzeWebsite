@@ -519,6 +519,9 @@ def owner_product_view(id):
 def subscriber():
     if not g.admin:
         return redirect(url_for('login'))
+
+    g.admin.last_sub_read_time = datetime.utcnow()
+    db.session.commit()
         
     page = request.args.get('page', 1, type=int)
     subscribers = Subscriber.query.order_by(Subscriber.id.desc()).paginate(
@@ -558,7 +561,7 @@ def contact_list():
     if not g.admin:
         return redirect(url_for('login'))
     
-    g.admin.last_notification_read_time = datetime.utcnow()
+    g.admin.last_contact_read_time = datetime.utcnow()
     db.session.commit()
         
     page = request.args.get('page', 1, type=int)

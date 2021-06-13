@@ -8,7 +8,16 @@
             <li><span class="fas fa-home"></span> <a href=" {{ url_for('dashboard')}} " class="addActive">Home</a></li>
             <li><span class="fas fa-store-alt"></span> <a href=" {{ url_for('post')}} " class="addActive">Post</a></li>
             <li><span class="fas fa-cart-arrow-down"></span> <a href=" {{ url_for('product') }} " class="addActive">Product</a></li>
-            <li><span class="fas fa-users"></span> <a href=" {{ url_for('subscriber') }} " class="addActive">Subscriber</a></li>
+
+
+            <li><span class="fas fa-users"></span> 
+                <a href=" {{ url_for('subscriber') }} " class="addActive">Subscriber
+                    {% set new_messages = g.admin.new_subscriber() %}
+                    {% if new_messages %}
+                        <span class="badge" style="color: #c0392b;">{{ new_messages }}</span>
+                    {% endif %}
+                </a></li>
+
 
             <li><span class="fas fa-users"></span> 
                 <a href=" {{ url_for('contact_list') }} " class="addActive">Contact
