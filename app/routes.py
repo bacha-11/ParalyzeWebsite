@@ -4,6 +4,7 @@ from base64 import b64encode
 from app.models import Contact, Owner, Post, Product, Subscriber
 from flask import redirect, request, render_template, url_for, flash, g, session, make_response
 from werkzeug.utils import secure_filename
+from datetime import datetime
 
 app.config["ALLOWED_IMAGE_EXTENSIONS"] = ["JPEG", "JPG", "PNG", "GIF"]
 
@@ -556,6 +557,9 @@ def delete_subscriber(id):
 def contact_list():
     if not g.admin:
         return redirect(url_for('login'))
+    
+    g.admin.last_notification_read_time = datetime.utcnow()
+    db.session.commit()
         
     page = request.args.get('page', 1, type=int)
     contacts = Contact.query.order_by(Contact.id.desc()).paginate(

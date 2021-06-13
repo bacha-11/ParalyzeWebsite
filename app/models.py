@@ -9,6 +9,7 @@ class Owner(db.Model):
     username = db.Column(db.String(128), nullable=False)
     email = db.Column(db.String(128), nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
+    last_notification_read_time = db.Column(db.DateTime)
 
     def __repr__(self):
         return 'Admin -> {}'.format(self.username)
@@ -17,7 +18,15 @@ class Owner(db.Model):
         self.password_hash = generate_password_hash(password)
 
     def check_password(self, password):
-        return check_password_hash(self.password_hash, password) 
+        return check_password_hash(self.password_hash, password)
+
+    
+    def new_contact(self):
+        last_read_time = self.last_notification_read_time or datetime(1900, 1, 1)
+        return Contact.query.filter(Contact.timestamp > last_read_time).count()
+
+
+
 
 
 class Post(db.Model):
@@ -63,6 +72,7 @@ class Contact(db.Model):
     name = db.Column(db.String(132), nullable=False)
     email = db.Column(db.String(132), nullable=False)
     question = db.Column(db.String(500), nullable=False)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __str__(self):
         return 'Name -> {}'.format(self.name)
