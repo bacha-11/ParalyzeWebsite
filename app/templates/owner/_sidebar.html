@@ -16,7 +16,7 @@
                     {% if new_messages %}
                     <span id="message_count" class="badge" 
                     style="visibility: {% if new_messages %} visible
-                                       {% else %}hidden {% endif %};">
+                                       {% else %}hidden {% endif %}; color: #c0392b;">
                     {{ new_messages }}
                     </span>
                     {% endif %}
@@ -30,7 +30,7 @@
                         <!-- <span class="badge" style="color: #c0392b;">{{ new_messages }}</span> -->
                         <span id="message_count" class="badge"
                                   style="visibility: {% if new_messages %}visible
-                                                     {% else %}hidden {% endif %};">
+                                                     {% else %}hidden {% endif %}; color: #c0392b;">
                                 {{ new_messages }}
                         </span>
                     {% endif %}

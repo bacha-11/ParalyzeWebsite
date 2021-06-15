@@ -27,7 +27,11 @@ def index():
 
         new_sub = Subscriber(email=email)
         db.session.add(new_sub)
+
+        admin = Owner.query.filter(Owner.id).first()
+        admin.add_notification('unread_message_count', admin.new_subscriber())
         db.session.commit()
+
         flash("Successfully subscribe our news least!", "success")
         return redirect(url_for('index'))
     
@@ -56,7 +60,11 @@ def blog():
 
         new_sub = Subscriber(email=email)
         db.session.add(new_sub)
+
+        admin = Owner.query.filter(Owner.id).first()
+        admin.add_notification('unread_message_count', admin.new_subscriber())
         db.session.commit()
+
         flash("Successfully subscribe our news least!", "success")
         return redirect(url_for('blog'))
 
@@ -81,7 +89,11 @@ def post_view(id):
 
         new_sub = Subscriber(email=email)
         db.session.add(new_sub)
+
+        admin = Owner.query.filter(Owner.id).first()
+        admin.add_notification('unread_message_count', admin.new_subscriber())
         db.session.commit()
+
         flash("Successfully subscribe our news least!", "success")
         return redirect(url_for('post_view', id=post.id))
 
@@ -102,7 +114,11 @@ def shop():
 
         new_sub = Subscriber(email=email)
         db.session.add(new_sub)
+        
+        admin = Owner.query.filter(Owner.id).first()
+        admin.add_notification('unread_message_count', admin.new_subscriber())
         db.session.commit()
+
         flash("Successfully subscribe our news least!", "success")
         return redirect(url_for('shop'))
 
@@ -120,9 +136,10 @@ def contact():
         new_contact = Contact(name=name, email=email, question=question)
         db.session.add(new_contact)
 
-        admin = Owner.query.filter_by(id=2).first()
+        admin = Owner.query.filter(Owner.id).first()
         admin.add_notification('unread_message_count', admin.new_contact())
         db.session.commit()
+
         flash('{} your query is successfully send!'.format(name.title()), "success")
         return redirect(url_for('contact'))
         
@@ -136,10 +153,11 @@ def about():
 
 
 
-# Dashboard code start from here
-admin_username = ['admin']
-admin_password = ['admin']
 
+
+
+
+# Dashboard code start from here
 
 
 @app.before_request
@@ -527,7 +545,10 @@ def subscriber():
         return redirect(url_for('login'))
 
     g.admin.last_sub_read_time = datetime.utcnow()
+
+    g.admin.add_notification('unread_message_count', 0)
     db.session.commit()
+    
         
     page = request.args.get('page', 1, type=int)
     subscribers = Subscriber.query.order_by(Subscriber.id.desc()).paginate(
@@ -585,6 +606,7 @@ def contact_list():
     return render_template('owner/owner_contact_view.html', title='Contact', contacts=contacts.items, next_url=next_url, prev_url=prev_url)
 
 
+
 @app.route("/delete_contact/<id>")
 def delete_contact(id):
     if not g.admin:
@@ -595,6 +617,7 @@ def delete_contact(id):
     db.session.commit()
     flash("Successfully Deleted!", "success")
     return redirect(url_for("contact_list"))
+
 
 
 @app.route('/contact_detial_view/<id>')
