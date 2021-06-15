@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:,">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
     <link rel="stylesheet" href="{{ url_for('static', filename='style/owner.css') }}">
 
@@ -36,10 +37,42 @@
 
     {% endblock %}
 
+    
 
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
     <script src="https://cdn.ckeditor.com/4.10.0/standard/ckeditor.js"></script>
     <script src="{{ url_for('static', filename='scripts/main.js') }}"></script>
+
+    {% block scripts %}
+    <script>
+      
+      function set_message_count(n) {
+            $('#message_count').text(n);
+            $('#message_count').css('visibility', n ? 'visible' : 'hidden');
+        }
+
+
+      {% if g.admin %}
+      $(function() {
+          var since = 0;
+          setInterval(function() {
+              $.ajax('{{ url_for('notifications') }}?since=' + since).done(
+                  function(notifications) {
+                      for (var i = 0; i < notifications.length; i++) {
+                          if (notifications[i].name == 'unread_message_count')
+                              set_message_count(notifications[i].data);
+                          since = notifications[i].timestamp;
+                      }
+                  }
+              );
+          }, 10000);
+      });
+      {% endif %}
+        
+    </script>
+    {% endblock %}
     
 </body>
 </html>

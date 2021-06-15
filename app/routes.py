@@ -1,12 +1,14 @@
 from sqlalchemy.orm import query
 from app import app, db
 from base64 import b64encode
-from app.models import Contact, Owner, Post, Product, Subscriber
-from flask import redirect, request, render_template, url_for, flash, g, session, make_response
+from app.models import Contact, Owner, Post, Product, Subscriber, Notification
+from flask import redirect, request, render_template, url_for, flash, g, session, make_response, jsonify
 from werkzeug.utils import secure_filename
 from datetime import datetime
 
 app.config["ALLOWED_IMAGE_EXTENSIONS"] = ["JPEG", "JPG", "PNG", "GIF"]
+
+
 
 
 
@@ -114,8 +116,12 @@ def contact():
         name = request.form['name']
         email = request.form['email']
         question = request.form['question']
+
         new_contact = Contact(name=name, email=email, question=question)
         db.session.add(new_contact)
+
+        admin = Owner.query.filter_by(id=2).first()
+        admin.add_notification('unread_message_count', admin.new_contact())
         db.session.commit()
         flash('{} your query is successfully send!'.format(name.title()), "success")
         return redirect(url_for('contact'))
@@ -543,6 +549,7 @@ def subscriber():
     return render_template('owner/owner_subscriber.html', title='Subscriber', subscribers=subscribers.items, next_url=next_url, prev_url=prev_url)
 
 
+
 @app.route('/delete_subscriber<id>')
 def delete_subscriber(id):
     if not g.admin:
@@ -562,6 +569,8 @@ def contact_list():
         return redirect(url_for('login'))
     
     g.admin.last_contact_read_time = datetime.utcnow()
+
+    g.admin.add_notification('unread_message_count', 0)
     db.session.commit()
         
     page = request.args.get('page', 1, type=int)
@@ -596,5 +605,19 @@ def contact_detial_view(id):
     contact = Contact.query.filter_by(id=id).first()
     return render_template('owner/contact_detial_view.html', title='Contact Detial View', contact=contact)
 
+
+@app.route('/notifications')
+def notifications():
+    if not g.admin:
+        return redirect(url_for('login'))
+
+    since = request.args.get('since', 0.0, type=float)
+    notifications = g.admin.notifications.filter(
+        Notification.timestamp > since).order_by(Notification.timestamp.asc())
+    return jsonify([{
+        'name': n.name,
+        'data': n.get_data(),
+        'timestamp': n.timestamp
+    } for n in notifications])
 
 # End Dashboard

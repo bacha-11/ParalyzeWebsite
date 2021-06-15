@@ -2,6 +2,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 from enum import unique
 from app import db
+import json
+from time import time
 
 
 class Owner(db.Model):
@@ -11,6 +13,9 @@ class Owner(db.Model):
     password_hash = db.Column(db.String(128), nullable=False)
     last_contact_read_time = db.Column(db.DateTime)
     last_sub_read_time = db.Column(db.DateTime)
+
+    notifications = db.relationship('Notification', backref='user',
+                                    lazy='dynamic')
 
     def __repr__(self):
         return 'Admin -> {}'.format(self.username)
@@ -30,6 +35,13 @@ class Owner(db.Model):
     def new_subscriber(self):
         last_read_time = self.last_sub_read_time or datetime(1900, 1, 1)
         return Subscriber.query.filter(Subscriber.timestamp > last_read_time).count()
+
+    
+    def add_notification(self, name, data):
+        self.notifications.filter_by(name=name).delete()
+        n = Notification(name=name, payload_json=json.dumps(data), user=self)
+        db.session.add(n)
+        return n
 
 
 class Post(db.Model):
@@ -82,5 +94,13 @@ class Contact(db.Model):
         return 'Name -> {}'.format(self.name)
 
 
+class Notification(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(128), index=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('owner.id'))
+    timestamp = db.Column(db.Float, index=True, default=time)
+    payload_json = db.Column(db.Text)
 
+    def get_data(self):
+        return json.loads(str(self.payload_json))
 

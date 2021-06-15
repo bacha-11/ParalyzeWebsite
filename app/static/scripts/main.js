@@ -43,10 +43,12 @@ function remove_cssClass(){
 }
 
 
-// close message alert
+// close flash message alert
 
 function alertClose(){
     document.getElementsByClassName('alert')[0].classList.add('remove_alert')
 }
+
+
 
 

@@ -14,7 +14,11 @@
                 <a href=" {{ url_for('subscriber') }} " class="addActive">Subscriber
                     {% set new_messages = g.admin.new_subscriber() %}
                     {% if new_messages %}
-                        <span class="badge" style="color: #c0392b;">{{ new_messages }}</span>
+                    <span id="message_count" class="badge" 
+                    style="visibility: {% if new_messages %} visible
+                                       {% else %}hidden {% endif %};">
+                    {{ new_messages }}
+                    </span>
                     {% endif %}
                 </a></li>
 
@@ -23,7 +27,12 @@
                 <a href=" {{ url_for('contact_list') }} " class="addActive">Contact
                     {% set new_messages = g.admin.new_contact() %}
                     {% if new_messages %}
-                        <span class="badge" style="color: #c0392b;">{{ new_messages }}</span>
+                        <!-- <span class="badge" style="color: #c0392b;">{{ new_messages }}</span> -->
+                        <span id="message_count" class="badge"
+                                  style="visibility: {% if new_messages %}visible
+                                                     {% else %}hidden {% endif %};">
+                                {{ new_messages }}
+                        </span>
                     {% endif %}
             </a></li>
 
