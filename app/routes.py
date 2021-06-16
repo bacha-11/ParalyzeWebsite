@@ -1,5 +1,7 @@
+from re import A
+from flask_mail import Message
 from sqlalchemy.orm import query
-from app import app, db
+from app import app, db, mail
 from base64 import b64encode
 from app.models import Contact, Owner, Post, Product, Subscriber, Notification
 from flask import redirect, request, render_template, url_for, flash, g, session, make_response, jsonify
@@ -9,6 +11,17 @@ from datetime import datetime
 app.config["ALLOWED_IMAGE_EXTENSIONS"] = ["JPEG", "JPG", "PNG", "GIF"]
 
 
+
+
+@app.route('/mail')
+def test_mail():
+    post = Post.query.filter(Post.id).first()
+    msg = Message(subject='Hi There', recipients=['socialtraffic086@gmail.com', 'horare3877@0ranges.com'])
+    msg.body = "sending msg for testing perpose"
+    msg.html = "<h1>hi user </h1>"
+    mail.send(msg)
+
+    return "msg has been send!"
 
 
 
