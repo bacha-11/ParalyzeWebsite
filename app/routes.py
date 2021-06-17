@@ -75,10 +75,11 @@ def blog():
     return render_template('client/blog.html', title='Blog', posts=posts.items, next_url=next_url, prev_url=prev_url, b64encode=b64encode)
 
 
-@app.route('/post-detial-view/<id>', methods=['GET', 'POST'])
-def post_view(id):
+@app.route('/post-detial-view/<title>', methods=['GET', 'POST'])
+def post_view(title):
     posts = Post.query.order_by(Post.timestamp.desc()).all()[0:9]
-    post = Post.query.filter_by(id=id).first()
+    post = Post.query.filter_by(title=title).first()
+    print(post)
     image = b64encode(post.image).decode("utf-8")
     post.article_views = post.article_views + 1
     db.session.commit()
@@ -89,7 +90,7 @@ def post_view(id):
         subscriber = Subscriber.query.filter_by(email=email).first()
         if subscriber:
             flash('Already subscribe our news least!', "warning")
-            return redirect(url_for('post_view', id=post.id))  
+            return redirect(url_for('post_view', id=post.title))  
 
         new_sub = Subscriber(email=email)
         db.session.add(new_sub)
@@ -99,7 +100,7 @@ def post_view(id):
         db.session.commit()
 
         flash("Successfully subscribe our news least!", "success")
-        return redirect(url_for('post_view', id=post.id))
+        return redirect(url_for('post_view', id=post.title))
 
     return render_template('client/post_view.html', title='Blog Post', post=post, image=image, posts=posts)
 

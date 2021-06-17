@@ -29,7 +29,7 @@
         <div class="latest_post">
             <h4>Latest Updates</h4>
             {% for post in posts %}
-            <h2><a href="{{ url_for('post_view', id=post.id)}}"> {{post.title}} </a></h2>
+            <h2><a href="{{ url_for('post_view', title=post.title)}}"> {{post.title}} </a></h2>
             {% endfor %}
         </div>
     </div>
