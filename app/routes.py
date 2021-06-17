@@ -13,16 +13,6 @@ app.config["ALLOWED_IMAGE_EXTENSIONS"] = ["JPEG", "JPG", "PNG", "GIF"]
 
 
 
-@app.route('/mail')
-def test_mail():
-    post = Post.query.filter(Post.id).first()
-    msg = Message(subject='Hi There', recipients=['socialtraffic086@gmail.com', 'horare3877@0ranges.com'])
-    msg.body = "sending msg for testing perpose"
-    msg.html = "<h1>hi user </h1>"
-    mail.send(msg)
-
-    return "msg has been send!"
-
 
 
 
@@ -49,6 +39,7 @@ def index():
         return redirect(url_for('index'))
     
     return render_template('client/index.html', title='Home Page', posts=posts, b64encode=b64encode)
+
 
 
 
@@ -327,6 +318,7 @@ def allowed_image(filename):
         return False
 
 
+
 @app.route('/addpost', methods=['GET', 'POST'])
 def addpost():
     if not g.admin:
@@ -356,6 +348,18 @@ def addpost():
             new_post = Post(title=title, image=image.read(), image_name=image_name, article=article)
             db.session.add(new_post)
             db.session.commit()
+
+            post = Post.query.filter_by(title=title).first()
+            subscribers = Subscriber.query.all()
+            if subscribers:
+                html_body = render_template('owner/send_mail.html', post=post)
+                with mail.connect() as conn:
+                    for sub in subscribers:
+                        msg = Message(subject='Hi There', recipients=[sub.email])
+                        msg.html = html_body
+                        conn.send(msg)
+
+
             flash('Post successfully added!', "success")
             return redirect(url_for('addpost'))
 
