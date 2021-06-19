@@ -22,7 +22,7 @@
     {% for post in posts %}
     <div class="card">
         <a href=" {{ url_for('post_view', title=post.title)}} ">
-            <img src=' data:;base64,{{ b64encode(post.image).decode("utf-8") }} ' title="{{post.title}}" alt="{{post.image_name}}">
+            <img src=' data:;base64,{{ b64encode(post.image).decode("utf-8") }} ' title="pic of {{post.title}}" alt="{{post.image_name}}">
         </a>
         <h2>{{post.title}}</h2>
         <p>{{post.article|safe|truncate(270, True, '...')}}</p>

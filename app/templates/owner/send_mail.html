@@ -2,7 +2,7 @@
 <h1>{{ post.title }}</h1>
 <p>
     To see more detial!
-    <a href="{{ url_for('post_view', id=post.id, _external=True) }}">
+    <a href="{{ url_for('post_view', title=post.title, _external=True) }}">
         click here
     </a>.
 </p>

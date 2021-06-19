@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
 *{
     padding: 0;
     margin: 0;
@@ -5,7 +7,8 @@
 }
 
 body{
-    font-family: Arial, Helvetica, sans-serif;
+    /* font-family: Arial, Helvetica, sans-serif; */
+    font-family: 'Roboto', sans-serif;
 }
 
 header{
@@ -784,8 +787,12 @@ footer{
 .post_view_content p{
     color: #34495e;
     text-align: justify;
-    line-height: 25px;
+    font-size: 1.1rem;
+    font-weight: 100;
+    line-height: 28px;
     margin-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 

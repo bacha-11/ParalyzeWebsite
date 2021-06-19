@@ -90,7 +90,7 @@ def post_view(title):
         subscriber = Subscriber.query.filter_by(email=email).first()
         if subscriber:
             flash('Already subscribe our news least!', "warning")
-            return redirect(url_for('post_view', title=post.title))  
+            return redirect(url_for('post_view', title=title))  
 
         new_sub = Subscriber(email=email)
         db.session.add(new_sub)
@@ -100,7 +100,7 @@ def post_view(title):
         db.session.commit()
 
         flash("Successfully subscribe our news least!", "success")
-        return redirect(url_for('post_view', title=post.title))
+        return redirect(url_for('post_view', title=title))
 
     return render_template('client/post_view.html', title='Blog Post', post=post, image=image, posts=posts)
 
