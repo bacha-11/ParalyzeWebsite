@@ -11,7 +11,7 @@
 <div class="post_view_page">
     <div class="post_view_content">
         <h1>{{post.title}}</h1>
-        <img src=" data:;base64, {{ image }} " alt="product pic">
+        <img src=" data:;base64, {{ image }} " title="Pic of {{post.title}}" alt="{{post.image_name}} pic">
         <p>{{post.article|safe}}</p>
     </div>
 

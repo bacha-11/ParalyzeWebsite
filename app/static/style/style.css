@@ -791,8 +791,6 @@ footer{
     font-weight: 100;
     line-height: 28px;
     margin-bottom: 20px;
-    padding-left: 10px;
-    padding-right: 10px;
 }
 
 
@@ -1127,6 +1125,13 @@ footer{
 
     .post_view_page .post_rightside_content{
         width: 100%;  
+    }
+
+    .post_view_content p{
+        font-size: 1rem;
+        
+        line-height: 25px;
+        
     }
 
 
