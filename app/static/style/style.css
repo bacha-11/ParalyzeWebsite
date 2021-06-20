@@ -765,6 +765,8 @@ footer{
     width: 75%;
     height: auto;
     display: flex;
+    padding-left: 1rem;
+    padding-right: 1rem;
     flex-direction: column;
 }
 
@@ -789,7 +791,7 @@ footer{
     text-align: justify;
     font-size: 1.1rem;
     font-weight: 100;
-    line-height: 28px;
+    line-height: 30px;
     margin-bottom: 20px;
 }
 
@@ -806,7 +808,7 @@ footer{
 .post_rightside_content .post_subscribe_form{
     width: 100%;
     height: 50vh;
-    border-radius: 10px;
+    border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -844,7 +846,7 @@ footer{
 .post_subscribe_form button{
     width: 100%;
     height: 8vh;
-    color: #FFFFFF;
+    color: #ecf0f1;
     outline: none;
     cursor: pointer;
     font-size: 1.2rem;
@@ -868,9 +870,9 @@ footer{
     display: flex;
     position: relative;
     flex-direction: column;
-    margin-top: 70px;
+    margin-top: 30px;
     margin-bottom: 20px;
-    border-radius: 10px;
+    border-radius: 4px;
     background-color: #9bc634;
 }
 
@@ -897,7 +899,7 @@ footer{
 
 .latest_post h2 a{
     text-decoration: none;
-    color: #34495e;
+    color: #ecf0f1;
 }
 
 
