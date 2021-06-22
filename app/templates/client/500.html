@@ -1,0 +1,17 @@
+{% extends 'client/base.html' %}
+
+{% block content %}
+
+
+<div class="post_nav_color">
+    {% include 'client/_nav.html' %}
+</div>
+
+<div class="error_page">
+    <h1>500</h1>
+    <p>Opps! somthing went wrong, Server error 500.</p>
+    <a href=" {{ url_for('index') }} ">Go Back</a>
+</div>
+
+
+{% endblock %}

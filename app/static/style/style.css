@@ -948,6 +948,47 @@ footer{
 
 
 
+.error_page{
+    width: 100%;
+    height: 86vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f7f1e3;
+}
+
+.error_page h1{
+    color: #34495e;
+    font-size: 300px;
+    font-weight: 900;
+    letter-spacing: 10px;
+}
+
+
+.error_page p{
+    color: #34495e;
+    font-size: 18px;
+    text-transform: capitalize;
+}
+
+
+.error_page a{
+    text-decoration: none;
+    color: #ecf0f1;
+    padding: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-top: 10px;
+    font-size: 1.3rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    background-color: #9bc634;
+}
+
+
+.error_page a:hover{
+    background-color: #34495e;
+}
 
 
 
@@ -997,6 +1038,22 @@ footer{
 
     .shoping_card_content .shoping_card{
         width: 30%;
+    }
+
+
+
+    .error_page{
+        justify-content: center;
+    }
+    
+
+    .error_page h1{
+        font-size: 200px;
+    }
+
+
+    .error_page p{
+        font-size: 15px;
     }
 
     

@@ -31,4 +31,4 @@ app.config['MAIL_DEFAULT_SENDER'] = 'loseweight929@gmail.com'
 
 mail = Mail(app)
 
-from app import routes, models
+from app import routes, models, errors
