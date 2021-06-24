@@ -1,12 +1,12 @@
-from re import A
 from flask_mail import Message
-from sqlalchemy.orm import query
 from app import app, db, mail
 from base64 import b64encode
 from app.models import Contact, Owner, Post, Product, Subscriber, Notification
 from flask import redirect, request, render_template, url_for, flash, g, session, make_response, jsonify
 from werkzeug.utils import secure_filename
 from datetime import datetime
+
+
 
 app.config["ALLOWED_IMAGE_EXTENSIONS"] = ["JPEG", "JPG", "PNG", "GIF"]
 
@@ -77,9 +77,9 @@ def blog():
 
 @app.route('/post-detial-view/<title>', methods=['GET', 'POST'])
 def post_view(title):
+    title = title.replace("-", " ")
     posts = Post.query.order_by(Post.timestamp.desc()).all()[0:9]
     post = Post.query.filter_by(title=title).first()
-    print(post)
     image = b64encode(post.image).decode("utf-8")
     post.article_views = post.article_views + 1
     db.session.commit()
@@ -90,7 +90,7 @@ def post_view(title):
         subscriber = Subscriber.query.filter_by(email=email).first()
         if subscriber:
             flash('Already subscribe our news least!', "warning")
-            return redirect(url_for('post_view', title=title))  
+            return redirect(url_for('post_view', title=title.replace(' ', '-')))  
 
         new_sub = Subscriber(email=email)
         db.session.add(new_sub)
@@ -102,7 +102,7 @@ def post_view(title):
         flash("Successfully subscribe our news least!", "success")
         return redirect(url_for('post_view', title=title))
 
-    return render_template('client/post_view.html', title='Blog Post', post=post, image=image, posts=posts)
+    return render_template('client/post_view.html', title='Blog Post', post=post, posts=posts, image=image)
 
 
 @app.route('/shop-products', methods=['GET', 'POST'])
@@ -346,7 +346,7 @@ def addpost():
         if allowed_image(image.filename):
             image_name = secure_filename(image.filename)
 
-            new_post = Post(title=title, image=image.read(), image_name=image_name, article=article)
+            new_post = Post(title=title.lower(), image=image.read(), image_name=image_name, article=article)
             db.session.add(new_post)
             db.session.commit()
 
